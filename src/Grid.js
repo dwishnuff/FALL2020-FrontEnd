@@ -25,10 +25,11 @@ class Grid extends React.Component {
            
             <ResponsiveReactGridLayout
                 layouts={{ lg:layout}, {md:layout}, {sm:layout}}
+                //layouts={{lg:layout}}
                 breakpoints={{lg: 1200, md: 996, sm: 768}}
                 measureBeforeMount={true}
                 className="layout"
-                autoSize={true}
+                //autoSize={true}
                 rowHeight={this.props.rowHeight}
                 isDragable={true}
                 isResizable={true}

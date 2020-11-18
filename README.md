@@ -47,3 +47,8 @@ npm install react
 npm install react-dom
 npm install web-vitals
 npm install react-scripts
+npm install gh-pages --save-dev
+
+## gh-pages deploy
+npm run deploy locally to redeploy to gh-pages
+https://dev.to/yuribenjamin/how-to-deploy-react-app-in-github-pages-2a1f
