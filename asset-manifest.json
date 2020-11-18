@@ -1,22 +1,22 @@
 {
   "files": {
     "main.css": "/FALL2020-FrontEnd/static/css/main.e7b242bc.chunk.css",
-    "main.js": "/FALL2020-FrontEnd/static/js/main.2b239f03.chunk.js",
-    "main.js.map": "/FALL2020-FrontEnd/static/js/main.2b239f03.chunk.js.map",
+    "main.js": "/FALL2020-FrontEnd/static/js/main.09f47242.chunk.js",
+    "main.js.map": "/FALL2020-FrontEnd/static/js/main.09f47242.chunk.js.map",
     "runtime-main.js": "/FALL2020-FrontEnd/static/js/runtime-main.ab466a09.js",
     "runtime-main.js.map": "/FALL2020-FrontEnd/static/js/runtime-main.ab466a09.js.map",
-    "static/js/2.1f1fd9d3.chunk.js": "/FALL2020-FrontEnd/static/js/2.1f1fd9d3.chunk.js",
-    "static/js/2.1f1fd9d3.chunk.js.map": "/FALL2020-FrontEnd/static/js/2.1f1fd9d3.chunk.js.map",
+    "static/js/2.6222b3d8.chunk.js": "/FALL2020-FrontEnd/static/js/2.6222b3d8.chunk.js",
+    "static/js/2.6222b3d8.chunk.js.map": "/FALL2020-FrontEnd/static/js/2.6222b3d8.chunk.js.map",
     "static/js/3.3cc5a9ff.chunk.js": "/FALL2020-FrontEnd/static/js/3.3cc5a9ff.chunk.js",
     "static/js/3.3cc5a9ff.chunk.js.map": "/FALL2020-FrontEnd/static/js/3.3cc5a9ff.chunk.js.map",
     "index.html": "/FALL2020-FrontEnd/index.html",
     "static/css/main.e7b242bc.chunk.css.map": "/FALL2020-FrontEnd/static/css/main.e7b242bc.chunk.css.map",
-    "static/js/2.1f1fd9d3.chunk.js.LICENSE.txt": "/FALL2020-FrontEnd/static/js/2.1f1fd9d3.chunk.js.LICENSE.txt"
+    "static/js/2.6222b3d8.chunk.js.LICENSE.txt": "/FALL2020-FrontEnd/static/js/2.6222b3d8.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.ab466a09.js",
-    "static/js/2.1f1fd9d3.chunk.js",
+    "static/js/2.6222b3d8.chunk.js",
     "static/css/main.e7b242bc.chunk.css",
-    "static/js/main.2b239f03.chunk.js"
+    "static/js/main.09f47242.chunk.js"
   ]
 }
