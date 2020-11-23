@@ -5,13 +5,26 @@ import { Responsive, WidthProvider } from "react-grid-layout";
 //https://www.npmjs.com/package/react-grid-layout#installation
 
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
+
+//placeholder for a benchmark chart
+const chart1 = Benchmark;
+
+//placeholder for second chart
+const chart2 = Benchmark;
+
+//placeholder for third chart
+const chart3 = Benchmark;
+
+//placeholder for fourth chart
+const chart4 = Benchmark;
+
 class Grid extends React.Component {
   render() {
     const gridItems = [
-      { id: 1, name: "Chart One Goes Here" },
-      { id: 2, name: "Chart Two Goes Here" },
-      { id: 3, name: "Chart Three Goes Here" },
-      { id: 4, name: "Chart Four Goes Here" },
+      { id: 1, name: "PSU compared to Tier One CS", chart: chart1},
+      { id: 2, name: "Chart Two Goes Here", chart: chart2},
+      { id: 3, name: "Chart Three Goes Here", chart: chart3},
+      { id: 4, name: "Chart Four Goes Here",chart: chart4},
     ];
 
     const layout = [
@@ -43,11 +56,12 @@ class Grid extends React.Component {
               <h3>{item.name}</h3>
               <div
                 style={{
-                  width: "100%",
+                  width: "90%",
                   height: "80%",
+                  margin: "0 auto"
                 }}
               >
-                <Benchmark />
+                <item.chart />
               </div>
             </div>
           );
