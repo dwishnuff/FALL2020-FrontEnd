@@ -36,10 +36,13 @@ async function getFallRetention(unitid, start=LATEST, end=LATEST) {
             if (e.ok) {
                 return e.json();
             }
+            // TODO: handle errors
         }).then((data) => {
+            // TODO: make this more robust in case of missing data
             return data.results[0]["retention_rate"];
         });
 
+        // TODO: package data in a better way
         if (r) {
             res.push(r);
         }
@@ -48,4 +51,6 @@ async function getFallRetention(unitid, start=LATEST, end=LATEST) {
     return res;
 }
 
+
+// For testing purposes only:
 console.log(await getFallRetention(209551, 2016, 2018))
