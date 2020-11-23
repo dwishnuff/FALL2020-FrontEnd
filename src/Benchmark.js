@@ -29,8 +29,8 @@ function Benchmark() {
     // space of its parent element automatically
     <div
       style={{
-        width: '400px',
-        height: '300px'
+        width: '100%',
+        height: '100%'
       }}
     >
       <Chart data={data} axes={axes} />

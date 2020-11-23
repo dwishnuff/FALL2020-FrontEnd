@@ -5,8 +5,6 @@ import {Responsive, WidthProvider} from 'react-grid-layout';
 //https://www.npmjs.com/package/react-grid-layout#installation
 
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
-const chart = Benchmark;
-
 class Grid extends React.Component {
     render () {
         const gridItems = [
