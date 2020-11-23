@@ -12,19 +12,40 @@ full-time/part-time/total.
 // latest year for retention data
 const LATEST = 2018
 
-const BASE = "https://educationdata.urban.org/api/v1/college-university/ipeds/"
+const BASE = "https://educationdata.urban.org/"
+const API = "api/v1/college-university/ipeds/"
 
 // TODO: make it work
-function getFallRetention(unitid, year=LATEST) {
+async function getFallRetention(unitid, start=LATEST, end=LATEST) {
     if (!unitid) { return null; }
 
+    const api = API + "fall-retention"
+
     // supported in all browsers that matter, i.e. not IE
-    params = URLSearchParams();
+    params = new URLSearchParams();
     params.append("unitid", unitid);
+    // code for total student body data
+    params.append("ftpt", 99);
 
-    url = new URL(`/${year}/?${params}`, BASE);
+    res = []
+    for (year=start; year<=end; year++) {
+        url = new URL(`${api}/${year}/?${params}`, BASE);
 
-    res = await fetch(url).then((e) => {
-        // handle HTTP response code
-    });
+        r = await fetch(url).then((e) => {
+            // handle HTTP response code
+            if (e.ok) {
+                return e.json();
+            }
+        }).then((data) => {
+            return data.results[0]["retention_rate"];
+        });
+
+        if (r) {
+            res.push(r);
+        }
+    }
+
+    return res;
 }
+
+console.log(await getFallRetention(209551, 2016, 2018))
