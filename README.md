@@ -47,6 +47,7 @@ npm install react\
 npm install react-dom\
 npm install web-vitals\
 npm install react-scripts\
+npm install react-charts\
 npm install gh-pages --save-dev
 
 ## gh-pages deploy

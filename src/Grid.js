@@ -1,9 +1,11 @@
 import React from 'react';
 import './Grid.css';
+import Benchmark from './Benchmark.js';
 import {Responsive, WidthProvider} from 'react-grid-layout';
 //https://www.npmjs.com/package/react-grid-layout#installation
 
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
+const chart = Benchmark;
 
 class Grid extends React.Component {
     render () {
@@ -39,7 +41,7 @@ class Grid extends React.Component {
                 margin={[20, 20]}
             >{gridItems.map((item,i)=>{
                 return (
-                    <div key={item.id} className="grid-item">{item.name}</div>
+                    <div key={item.id} className="grid-item"><Benchmark/></div>
                 );
             })}</ResponsiveReactGridLayout>
         );
