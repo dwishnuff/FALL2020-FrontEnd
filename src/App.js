@@ -1,5 +1,5 @@
 import React from 'react';
-import graphic from './hands.png';
+//import graphic from './hands.png';
 import './App.css';
 
 function App() {
