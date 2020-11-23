@@ -3,7 +3,7 @@ import './App.css';
 
 function App() {
   return (
-    <h1>Temporary Title</h1>
+    <h1>Diversity in CS at PSU</h1>
   );
 }
 

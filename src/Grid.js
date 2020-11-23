@@ -35,6 +35,7 @@ class Grid extends React.Component {
     ];
 
     return (
+        <div class = "grid">
       <ResponsiveReactGridLayout
         //layouts={{ lg:layout}, {md:layout}, {sm:layout}}
         layouts={{ lg: layout }}
@@ -67,6 +68,7 @@ class Grid extends React.Component {
           );
         })}
       </ResponsiveReactGridLayout>
+      </div>
     );
   }
 }
