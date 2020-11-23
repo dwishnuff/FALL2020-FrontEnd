@@ -1,12 +1,24 @@
 @import url('https://fonts.googleapis.com/css2?family=Abel&family=Oswald:wght@500&display=swap');
 
 h1{
-  background-color: #252d48;
+  
   color: white;
   padding-left: 5%;
   font-family: 'Oswald', sans-serif;
   font-weight: normal;
   font-size: 5vw;
+  background-color: #252d48;
+}
+.banner{
+ /* background-color: #252d48;*/
+}
+.title{
+  /*display: inline-block;*/
+}
+
+.graphic{
+  display: inline-block;
+  height: 20vw;
 }
 
 .App {
