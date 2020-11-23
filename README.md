@@ -53,3 +53,10 @@ npm install gh-pages --save-dev
 ## gh-pages deploy
 npm run deploy locally to redeploy to gh-pages\
 https://dev.to/yuribenjamin/how-to-deploy-react-app-in-github-pages-2a1f
+
+## color themes
+#006d8c -- blue\
+#f999000 -- orange\
+#f27775 -- pink\
+#252d48 -- navy\
+#fc461a -- red\
