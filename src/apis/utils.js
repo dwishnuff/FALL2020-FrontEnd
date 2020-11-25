@@ -13,6 +13,7 @@ function unzip(arr) {
     return range(0, inner_len).map(i => arr.map(a => a[i]));
 }
 
+// zip :: [A] -> [B] -> [[A, B]]
 function zip(a, b) {
     const len = Math.min(a.length, b.length);
 
