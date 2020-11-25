@@ -8,7 +8,7 @@ export * as ipeds from './ipeds_consts.js';
 // that is directly usable as the data prop of a line chart
 function chartData(xArray, yArray, series="") {
     return {
-        series: series,
+        label: series,
         data: zip(xArray, yArray)
     };
 }
