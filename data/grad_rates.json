@@ -1,0 +1,30 @@
+{
+    "name": "CS Graduates by Year",
+    "years": [2015, 2016, 2017, 2018, 2019],
+    "total-graduates": [97, 116, 112, 146, 179],
+    "by-legal-sex": {
+        "Female": [10,19,12,15,22],
+        "Male": [86,95,98,130,155],
+        "Unknown": [1,2,2,1,2]
+    },
+    "by-race-ethnicity": {
+        "Asian": [11, 18, 18, 13, 24],
+        "Black or African American": [1, 4, 2, 1, 1],
+        "Hispanic or Latino": [4, 8, 6, 15, 6],
+        "International": [6,4,7,18,17],
+        "Two or More Races": [2,4,6,10,10],
+        "Unknown": [7,8,9,12,9],
+        "White": [66,70,64,77,112]
+    },
+    "by-sexual-orientation": {
+        "Not Heterosexual": ["Less than 5","Less than 5","Less than 5", "Less than 5",10],
+        "Heterosexual": ["Less than 5","Less than 5","Less than 5",8,25],
+        "No Response": [94,109,106,136,144]
+    },
+    "by-gender": {
+        "Woman": ["missing data","missing data","Less than 5","Less than 5",4],
+        "Man": ["Less than 5",6,"Less than 5",9,36],
+        "not identifying as male or female": ["missing data","Less than 5","Less than 5","missing data",10],
+        "No Response": [94,109,106,135,129]
+    }
+}
