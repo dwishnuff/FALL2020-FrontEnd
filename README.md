@@ -48,7 +48,8 @@ npm install react-dom\
 npm install web-vitals\
 npm install react-scripts\
 npm install react-charts\
-npm install gh-pages --save-dev
+npm install gh-pages --save-dev\
+npm install react--chartjs-2
 
 ## gh-pages deploy
 npm run deploy locally to redeploy to gh-pages\

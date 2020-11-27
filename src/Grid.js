@@ -11,7 +11,7 @@ const ResponsiveReactGridLayout = WidthProvider(Responsive);
 const chart1 = Benchmark;
 
 //placeholder for second chart
-const chart2 = Benchmark;
+const chart2 = GenderGrad;
 
 //placeholder for third chart
 const chart3 = Benchmark;
