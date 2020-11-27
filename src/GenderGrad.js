@@ -50,6 +50,9 @@ const data = {
         },
       ],
     },
+    tooltips: {
+      mode: 'label',
+  }
   }
   
   const StackedBar = () => (
