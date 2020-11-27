@@ -2,6 +2,7 @@ import React from "react";
 import "./Grid.css";
 import Benchmark from "./Benchmark.js";
 import GenderGrad from "./GenderGrad.js";
+import RaceGrad from "./RaceGrad.js";
 import { Responsive, WidthProvider } from "react-grid-layout";
 //https://www.npmjs.com/package/react-grid-layout#installation
 
@@ -14,7 +15,7 @@ const chart1 = Benchmark;
 const chart2 = GenderGrad;
 
 //placeholder for third chart
-const chart3 = Benchmark;
+const chart3 = RaceGrad;
 
 //placeholder for fourth chart
 const chart4 = Benchmark;
@@ -23,8 +24,8 @@ class Grid extends React.Component {
   render() {
     const gridItems = [
       { id: 1, name: "PSU compared to Tier One CS", chart: chart1},
-      { id: 2, name: "PSU CS Grad Class by Gender", chart: chart2},
-      { id: 3, name: "Chart Three Goes Here", chart: chart3},
+      { id: 2, name: "PSU CS Grad Class by Legal Sex", chart: chart2},
+      { id: 3, name: "PSU CS Grad by Ethnicity", chart: chart3},
       { id: 4, name: "Chart Four Goes Here",chart: chart4},
     ];
 
