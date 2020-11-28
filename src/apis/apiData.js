@@ -2,7 +2,7 @@
 // that work nicely with react-charts and similar libraries.
 
 import * as ipeds from './ipeds.js';
-import { range, zip } from 'utils.js';
+import { range, zip } from './utils.js';
 import { gradDemoBy, retentionBy } from './pdx_data.js';
 
 export { chartData, pdxDataCounts, pdxDataPercents, queryIpeds };
@@ -30,15 +30,16 @@ function chartData(xArray, yArray, series="") {
 //   ]
 function pdxDataPercents(type, feature) {
     let res = [];
+    let data = {};
     switch (type) {
         case "grad-demographics":
-            const data = gradDemoBy(feature, as="percent");
+            data = gradDemoBy(feature, "percent");
             for (let k in data.data.keys()) {
                 res.push(chartData(data.years, data.data[k], k));
             }
             break;
         case "retention":
-            const data = retentionBy(feature, as="percent");
+            data = retentionBy(feature, "percent");
             for (let k in data.data.keys()) {
                 res.push(chartData(data.years, data.data[k], k));
             }
@@ -71,9 +72,10 @@ function pdxDataPercents(type, feature) {
 // will be present in their own series.
 function pdxDataCounts(type, feature, keepTotals=true) {
     let res = [];
+    let data = {};
     switch (type) {
         case "grad-demographics":
-            const data = gradDemoBy(feature, as="counts");
+            data = gradDemoBy(feature, "counts");
             for (let k in data.data.keys()) {
                 if (keepTotals || k !== "totals") {
                     res.push(chartData(data.years, data.data[k], k));
@@ -81,7 +83,7 @@ function pdxDataCounts(type, feature, keepTotals=true) {
             }
             break;
         case "retention":
-            const data = retentionBy(feature, as="percent");
+            data = retentionBy(feature, "percent");
             for (let k in data.data.keys()) {
                 if (keepTotals || k !== "totals") {
                     res.push(chartData(data.years, data.data[k].init, "initial" + k));

@@ -2,6 +2,8 @@ import React from 'react'
 import { Chart } from 'react-charts'
 import { pdxDataPercents } from './apis/apiData'
 
+export { Benchmark, Benchmark2 };
+
 function Benchmark() {
   const data = React.useMemo(
     () => [
@@ -39,8 +41,6 @@ function Benchmark() {
   )
   return lineChart;
 }
-export default Benchmark;
-
 
 function Benchmark2() {
   const data = React.useMemo(
@@ -70,4 +70,3 @@ function Benchmark2() {
   )
   return lineChart;
 }
-export { Benchmark2 };

@@ -13,6 +13,7 @@ import * as _ from './ipeds_consts.js';
 import { unzip } from './utils.js';
 
 export { getFallRetention, getFallEnrollmentByRace };
+export * from './ipeds_consts.js';
 
 const BASE = "https://educationdata.urban.org/";
 const API = "api/v1/college-university/ipeds/";
@@ -24,7 +25,7 @@ async function getFallEnrollmentByRace(unitid, start=_.EARLIEST, end=_.LATEST, l
 
     const api = API + _.FALL_ENROLLMENT;
     const endpt = "race/sex/";
-    
+
     let params = new URLSearchParams();
     params.append("unitid", unitid);
     params.append("sex", 99);
@@ -41,7 +42,7 @@ async function getFallEnrollmentByRace(unitid, start=_.EARLIEST, end=_.LATEST, l
             // TODO: handle errors
         }).then((data) => {
             // TODO: make this more robust in case of missing data
-            
+
             // NOTE: this will be a list of enrollment values
             let temp = data.filter(itm => Number.parseInt(itm["sex"]) === 99);
             temp = temp.map(itm => [Number.parseInt(itm["race"]), Number.parseInt(itm["enrollment_fall"])])
