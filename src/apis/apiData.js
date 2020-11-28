@@ -2,7 +2,7 @@ import * as ipeds from './ipeds.js';
 import { range, zip } from 'utils.js';
 import { gradDemoBy, retentionBy } from './pdx_data.js';
 
-export { chartData, pdxDataPercents, queryIpeds };
+export { chartData, pdxDataCounts, pdxDataPercents, queryIpeds };
 export * as ipeds from './ipeds_consts.js';
 
 // convert arrays of x-values and y-values into an object
@@ -34,6 +34,35 @@ function pdxDataPercents(type, feature) {
         default:
             break;
     }
+    return res;
+}
+
+// get CS graduate demographic data or CS retention data
+// from our JSON data sets as counts
+function pdxDataCounts(type, feature, keepTotals=true) {
+    let res = [];
+    switch (type) {
+        case "grad-demographics":
+            const data = gradDemoBy(feature, as="counts");
+            for (let k in data.data.keys()) {
+                if (keepTotals || k !== "totals") {
+                    res.push(chartData(data.years, data.data[k], k));
+                }
+            }
+            break;
+        case "retention":
+            const data = retentionBy(feature, as="percent");
+            for (let k in data.data.keys()) {
+                if (keepTotals || k !== "totals") {
+                    res.push(chartData(data.years, data.data[k].init, "initial" + k));
+                    res.push(chartData(data.years, data.data[k].final, "final" + k));
+                }
+            }
+            break;
+        default:
+            break;
+    }
+
     return res;
 }
 
