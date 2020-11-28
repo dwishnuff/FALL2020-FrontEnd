@@ -1,6 +1,7 @@
 import React from 'react'
 import { Chart } from 'react-charts'
- 
+import { pdxDataPercents } from './apis/apiData'
+
 function Benchmark() {
   const data = React.useMemo(
     () => [
@@ -15,7 +16,7 @@ function Benchmark() {
     ],
     []
   )
- 
+
   const axes = React.useMemo(
     () => [
       { primary: true, type: 'linear', position: 'bottom' },
@@ -23,7 +24,7 @@ function Benchmark() {
     ],
     []
   )
- 
+
   const lineChart = (
     // A react-chart hyper-responsively and continuously fills the available
     // space of its parent element automatically
@@ -38,4 +39,35 @@ function Benchmark() {
   )
   return lineChart;
 }
-export default Benchmark;                              
+export default Benchmark;
+
+
+function Benchmark2() {
+  const data = React.useMemo(
+    () => pdxDataPercents("grad-demographics", "legal-sex"),
+    []
+  )
+
+  const axes = React.useMemo(
+    () => [
+      { primary: true, type: 'linear', position: 'bottom' },
+      { type: 'linear', position: 'left' }
+    ],
+    []
+  )
+
+  const lineChart = (
+    // A react-chart hyper-responsively and continuously fills the available
+    // space of its parent element automatically
+    <div
+      style={{
+        width: '100%',
+        height: '100%'
+      }}
+    >
+      <Chart data={data} axes={axes} />
+    </div>
+  )
+  return lineChart;
+}
+export { Benchmark2 };

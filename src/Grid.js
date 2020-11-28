@@ -1,13 +1,13 @@
 import React from "react";
 import "./Grid.css";
-import Benchmark from "./Benchmark.js";
+import { Benchmark, Benchmark2 } from "./Benchmark.js";
 import { Responsive, WidthProvider } from "react-grid-layout";
 //https://www.npmjs.com/package/react-grid-layout#installation
 
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
 
 //placeholder for a benchmark chart
-const chart1 = Benchmark;
+const chart1 = Benchmark2;
 
 //placeholder for second chart
 const chart2 = Benchmark;
