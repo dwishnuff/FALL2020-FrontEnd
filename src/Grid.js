@@ -3,7 +3,8 @@ import "./Grid.css";
 import Benchmark from "./Benchmark.js";
 import GenderGrad from "./GenderGrad.js";
 import RaceGrad from "./RaceGrad.js";
-import Persistence from "./Persistence.js"
+import Persistence from "./Persistence.js";
+//import Persistence from "./Persistence2.js";
 import { Responsive, WidthProvider } from "react-grid-layout";
 //https://www.npmjs.com/package/react-grid-layout#installation
 
