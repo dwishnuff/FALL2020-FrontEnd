@@ -1,4 +1,7 @@
 // functions to fetch data from our dataset, stored as JSON
+//
+// These can be imported directly for use, but it's best to
+// use the wrappers provided in `apiData.js`.
 
 import { zip } from './utils.js';
 

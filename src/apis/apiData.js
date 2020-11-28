@@ -1,3 +1,6 @@
+// Wrappers around API calls, intended to return data in structures
+// that work nicely with react-charts and similar libraries.
+
 import * as ipeds from './ipeds.js';
 import { range, zip } from 'utils.js';
 import { gradDemoBy, retentionBy } from './pdx_data.js';
