@@ -2,7 +2,7 @@
 
 import { zip } from './utils.js';
 
-export { gradRatesBy, retentionBy };
+export { gradDemoBy, retentionBy };
 
 export const LEGAL_SEX = "legal-sex";
 export const RACE = "race-ethnicity";
@@ -11,7 +11,7 @@ export const ORIENTATION = "sexual-orientation";
 export const URM = "urm"
 
 const baseUrl = "/data/";
-const gradRates = new URL("grad_rates.json", baseUrl);
+const gradDemo = new URL("grad_rates.json", baseUrl);
 const retention = new URL("retention.json", baseUrl);
 
 async function fetchJson(url) {
@@ -19,11 +19,11 @@ async function fetchJson(url) {
 }
 
 const data = {
-    gradRates: fetchJson(gradRates),
+    gradDemo: fetchJson(gradDemo),
     retention: fetchJson(retention)
 }
 
-// return graduation rate data partitioned on a feature such as
+// return CS graduate demographic data partitioned on a feature such as
 // race or gender for all years data is available for
 //
 // valid features are:
@@ -33,7 +33,7 @@ const data = {
 //   ORIENTATION    (sexual orientation)
 //
 // as:
-//   percent (of total graduates)
+//   percent (of total CS graduates)
 //   totals
 //
 // for percents, returned object has the form:
@@ -46,9 +46,9 @@ const data = {
 //   }
 //
 // totals are only returned with the data if not in "percent" mode
-function gradRatesBy(feature, as="percent") {
-    const years = data.gradRates.years;
-    const totals = data.gradRates["total-graduates"];
+function gradDemoBy(feature, as="percent") {
+    const years = data.gradDemo.years;
+    const totals = data.gradDemo["total-graduates"];
 
     let results = {
         years: years,
@@ -57,11 +57,11 @@ function gradRatesBy(feature, as="percent") {
     if (as !== "percent") {
         results.data.totals = totals;
     }
-    for (let k in data.gradRates[feature].keys()) {
+    for (let k in data.gradDemo[feature].keys()) {
         if (as === "percent") {
-            results.data[k] = zip(totals, data.gradRates[feature][k]).map(pair => pair[1] / pair[0] * 100);
+            results.data[k] = zip(totals, data.gradDemo[feature][k]).map(pair => pair[1] / pair[0] * 100);
         } else {
-            results.data[k] = data.gradRates[feature][k];
+            results.data[k] = data.gradDemo[feature][k];
         }
     }
 
