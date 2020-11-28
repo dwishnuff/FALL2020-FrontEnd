@@ -6,9 +6,6 @@ import { Responsive, WidthProvider } from "react-grid-layout";
 
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
 
-//placeholder for a benchmark chart
-const chart1 = Benchmark2;
-
 //placeholder for second chart
 const chart2 = Benchmark;
 
@@ -19,9 +16,19 @@ const chart3 = Benchmark;
 const chart4 = Benchmark;
 
 class Grid extends React.Component {
+  constructor() {
+    super();
+    this.state = { chart1: {} };
+  }
+
+  componentDidMount() {
+    Benchmark2().then(c => this.setState({ chart1: c }));
+  }
+
   render() {
+    console.log(this.state.chart1);
     const gridItems = [
-      { id: 1, name: "PSU compared to Tier One CS", chart: chart1},
+      { id: 1, name: "PSU compared to Tier One CS", chart: this.state.chart1},
       { id: 2, name: "Chart Two Goes Here", chart: chart2},
       { id: 3, name: "Chart Three Goes Here", chart: chart3},
       { id: 4, name: "Chart Four Goes Here",chart: chart4},

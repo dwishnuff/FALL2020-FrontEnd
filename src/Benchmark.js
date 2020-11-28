@@ -42,19 +42,17 @@ function Benchmark() {
   return lineChart;
 }
 
-function Benchmark2() {
-  const data = React.useMemo(
-    () => pdxDataPercents("grad-demographics", "legal-sex"),
-    []
-  )
+console.log(pdxDataPercents("grad-demographics", "legal-sex"));
 
-  const axes = React.useMemo(
-    () => [
+async function Benchmark2() {
+  let _data = await pdxDataPercents("grad-demographics", "legal-sex");
+  const data = () => _data;
+
+  const axes = () => [
       { primary: true, type: 'linear', position: 'bottom' },
       { type: 'linear', position: 'left' }
-    ],
-    []
-  )
+    ];
+
 
   const lineChart = (
     // A react-chart hyper-responsively and continuously fills the available

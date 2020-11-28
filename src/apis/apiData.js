@@ -28,19 +28,19 @@ function chartData(xArray, yArray, series="") {
 //       label: <field name>
 //     }
 //   ]
-function pdxDataPercents(type, feature) {
+async function pdxDataPercents(type, feature) {
     let res = [];
     let data = {};
     switch (type) {
         case "grad-demographics":
-            data = gradDemoBy(feature, "percent");
-            for (let k in data.data.keys()) {
+            await gradDemoBy(feature, "percent").then((d) => {data = d;});
+            for (let k of Object.keys(data.data)) {
                 res.push(chartData(data.years, data.data[k], k));
             }
             break;
         case "retention":
-            data = retentionBy(feature, "percent");
-            for (let k in data.data.keys()) {
+            await retentionBy(feature, "percent").then((d) => {data = d;});
+            for (let k of Object.keys(data.data)) {
                 res.push(chartData(data.years, data.data[k], k));
             }
             break;
@@ -70,21 +70,21 @@ function pdxDataPercents(type, feature) {
 //   ]
 // That is, the structure will be the same, but both initial and final values
 // will be present in their own series.
-function pdxDataCounts(type, feature, keepTotals=true) {
+async function pdxDataCounts(type, feature, keepTotals=true) {
     let res = [];
     let data = {};
     switch (type) {
         case "grad-demographics":
-            data = gradDemoBy(feature, "counts");
-            for (let k in data.data.keys()) {
+            await gradDemoBy(feature, "counts").then((d) => {data = d;});
+            for (let k of Object.keys(data.data)) {
                 if (keepTotals || k !== "totals") {
                     res.push(chartData(data.years, data.data[k], k));
                 }
             }
             break;
         case "retention":
-            data = retentionBy(feature, "percent");
-            for (let k in data.data.keys()) {
+            await retentionBy(feature, "percent").then((d) => {data = d;});
+            for (let k of Object.keys(data.data)) {
                 if (keepTotals || k !== "totals") {
                     res.push(chartData(data.years, data.data[k].init, "initial" + k));
                     res.push(chartData(data.years, data.data[k].final, "final" + k));
