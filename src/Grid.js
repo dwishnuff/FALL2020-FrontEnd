@@ -2,6 +2,7 @@ import React from "react";
 import "./Grid.css";
 import { Benchmark, Benchmark2 } from "./Benchmark.js";
 import { Responsive, WidthProvider } from "react-grid-layout";
+import { pdxDataPercents } from "./apis/apiData";
 //https://www.npmjs.com/package/react-grid-layout#installation
 
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
@@ -22,13 +23,13 @@ class Grid extends React.Component {
   }
 
   componentDidMount() {
-    Benchmark2().then(c => this.setState({ chart1: c }));
+    pdxDataPercents("grad-demographics", "percent").then(c => this.setState({ data1: c }));
   }
 
   render() {
     console.log(this.state.chart1);
     const gridItems = [
-      { id: 1, name: "PSU compared to Tier One CS", chart: this.state.chart1},
+      { id: 1, name: "PSU compared to Tier One CS", chart: Benchmark2({data: this.state.data1})},
       { id: 2, name: "Chart Two Goes Here", chart: chart2},
       { id: 3, name: "Chart Three Goes Here", chart: chart3},
       { id: 4, name: "Chart Four Goes Here",chart: chart4},
