@@ -2,6 +2,7 @@ import React from "react";
 import { Bar } from "react-chartjs-2";
 import chartdata from "./data/retention.json";
 
+
 const newdata = chartdata;
 
 const data = {
@@ -79,4 +80,3 @@ const options = {
 const MultiType = () => <Bar data={data} legend={legend} options={options}/>;
 
 export default MultiType;
-
