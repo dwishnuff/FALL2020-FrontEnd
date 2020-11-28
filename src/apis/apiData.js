@@ -2,7 +2,7 @@ import * as ipeds from './ipeds.js';
 import { range, zip } from 'utils.js';
 import { gradDemoBy, retentionBy } from './pdx_data.js';
 
-export { chartData, queryIpeds };
+export { chartData, pdxDataPercents, queryIpeds };
 export * as ipeds from './ipeds_consts.js';
 
 // convert arrays of x-values and y-values into an object
