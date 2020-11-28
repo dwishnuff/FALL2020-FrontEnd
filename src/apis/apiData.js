@@ -22,13 +22,13 @@ function pdxDataPercents(type, feature) {
         case "grad-demographics":
             const data = gradDemoBy(feature, as="percent");
             for (let k in data.data.keys()) {
-                res.push(chartData(data.years, data.data[k]));
+                res.push(chartData(data.years, data.data[k], k));
             }
             break;
         case "retention":
             const data = retentionBy(feature, as="percent");
             for (let k in data.data.keys()) {
-                res.push(chartData(data.years, data.data[k]));
+                res.push(chartData(data.years, data.data[k], k));
             }
             break;
         default:
