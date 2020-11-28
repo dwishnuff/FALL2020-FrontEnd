@@ -1,5 +1,6 @@
 import * as ipeds from './ipeds.js';
 import { range, zip } from 'utils.js';
+import { gradDemoBy, retentionBy } from './pdx_data.js';
 
 export { chartData, queryIpeds };
 export * as ipeds from './ipeds_consts.js';
@@ -11,6 +12,29 @@ function chartData(xArray, yArray, series="") {
         label: series,
         data: zip(xArray, yArray)
     };
+}
+
+// get CS graduate demographic data or CS retention data
+// from our JSON data sets as percentages
+function pdxDataPercents(type, feature) {
+    let res = [];
+    switch (type) {
+        case "grad-demographics":
+            const data = gradDemoBy(feature, as="percent");
+            for (let k in data.data.keys()) {
+                res.push(chartData(data.years, data.data[k]));
+            }
+            break;
+        case "retention":
+            const data = retentionBy(feature, as="percent");
+            for (let k in data.data.keys()) {
+                res.push(chartData(data.years, data.data[k]));
+            }
+            break;
+        default:
+            break;
+    }
+    return res;
 }
 
 // Get time series of various attributes available from the IPEDS dataset
