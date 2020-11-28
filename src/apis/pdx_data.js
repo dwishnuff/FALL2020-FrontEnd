@@ -79,15 +79,19 @@ function gradDemoBy(feature, as="percent") {
 //   percent
 //   totals
 //
-// for percents, returned object has the form:
+// for counts, returned object has the form:
 //   {
 //     years: [Number],
 //     data: {
-//       field: [Number],
+//       <field>: {
+//         init: [Number],
+//         final: [Number]
+//       },
 //       ...
 //     }
 //   }
-// for totals, data fields are objects with `init` and `final` properties
+// for percentages, data fields are similar in structure to those
+// documented for `gradDemoBy`
 function retentionBy(feature, as="percent") {
     const years = data.retention.years;
     let totals = {
