@@ -16,6 +16,15 @@ function chartData(xArray, yArray, series="") {
 
 // get CS graduate demographic data or CS retention data
 // from our JSON data sets as percentages
+//
+//
+// Return values should have the form:
+//   [
+//     {
+//       data: [(Year, Number)],
+//       label: <field name>
+//     }
+//   ]
 function pdxDataPercents(type, feature) {
     let res = [];
     switch (type) {
@@ -39,6 +48,24 @@ function pdxDataPercents(type, feature) {
 
 // get CS graduate demographic data or CS retention data
 // from our JSON data sets as counts
+//
+// Grad demographics return values should be similar to those documented
+// for `pdxDataPercentages`
+//
+// Retention data should be returned in an array with the form:
+//   [
+//     {
+//       data: [(year, Number)],
+//       label: "initial <field name>"
+//     },
+//     {
+//       data: [(year, Number)],
+//       label: "final <field name>"
+//     },
+//     ...
+//   ]
+// That is, the structure will be the same, but both initial and final values
+// will be present in their own series.
 function pdxDataCounts(type, feature, keepTotals=true) {
     let res = [];
     switch (type) {
