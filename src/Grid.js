@@ -2,7 +2,7 @@ import React from "react";
 import "./Grid.css";
 import { GradLegalSex } from "./GradLegalSex.js";
 import { Responsive, WidthProvider } from "react-grid-layout";
-import { pdxDataPercents } from "./apis/apiData";
+import { pdxDataCounts, pdxDataPercents } from "./apis/apiData";
 import GenderGrad from "./GenderGrad.js";
 import RaceGrad from "./RaceGrad.js";
 import Persistence from "./Persistence.js";
@@ -22,22 +22,31 @@ const chart4 = Persistence;
 class Grid extends React.Component {
   constructor() {
     super();
-    this.state = { data1: {}, loaded: false };
+    this.state = { loaded: false };
   }
 
   componentDidMount() {
-    if (!this.state.loaded) {
-      pdxDataPercents("grad-demographics", "legal-sex").then(c => this.setState({ data1: c, loaded: true }));
+    pdxDataPercents("grad-demographics", "legal-sex").then(c => {
+      this.setState({ legalSexPercent: c, loaded: true })
+    }).catch(_ => {
+      this.setState({loaded: false})
+    }).finally(_ => {
+      pdxDataCounts("grad-demographics", "legal-sex").then(c => {
+        this.setState({ legalSexCounts: c, loaded: true })
+      }).catch(_ => {
+        this.setState({loaded: false})
+      })
     }
+);
   }
 
   render() {
     if (!this.state.loaded) { return (<p>Loading...</p>)}
-    console.log(this.state.data1);
+    console.log(this.state.legalSexPercent);
 
     const gridItems = [
-      { id: 1, name: "PSU compared to Tier One CS", chart: () => {return (<GradLegalSex data={this.state.data1} />)}},
-      { id: 2, name: "PSU CS Grad Class by Legal Sex", chart: chart2},
+      { id: 1, name: "PSU CS Grad Class by Legal Sex (percentages)", chart: () => {return (<GradLegalSex data={this.state.legalSexPercent} />)}},
+      { id: 2, name: "PSU CS Grad Class by Legal Sex (counts)", chart: () => {return (<GradLegalSex data={this.state.legalSexCounts} />)}},
       { id: 3, name: "PSU CS Grad by Ethnicity", chart: chart3},
       { id: 4, name: "PSU CS Persistence",chart: chart4},
     ];
