@@ -1,5 +1,6 @@
 import React from "react";
 import { Bar } from "react-chartjs-2";
+import { applyColors } from "./apis/apiData";
 
 export { GradLegalSex };
 
@@ -32,7 +33,7 @@ const options = {
 		mode: "label",
 	},
 	responsive: true,
-	maintainAspectRatio: false,
+	maintainAspectRatio: true,
 };
 
 const colors = [
@@ -42,23 +43,9 @@ const colors = [
 ];
 
 function GradLegalSex(props) {
-	const data = props.data;
-	data.datasets = data.datasets.map((obj) => {
-		obj.fill = false;
-		obj.backgroundColor = "rgb(255, 99, 132)";
-		return obj;
-	});
+	const data = applyColors(props.data, colors);
 
 	return (
-		// A react-chart hyper-responsively and continuously fills the available
-		// space of its parent element automatically
-		<div
-			style={{
-				width: "100%",
-				height: "100%",
-			}}
-		>
-			<Bar data={data} legend={legend} options={options} />
-		</div>
+		<Bar data={data} legend={legend} options={options} />
 	);
 }
