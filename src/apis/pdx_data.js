@@ -58,7 +58,7 @@ async function gradDemoBy(feature, as="percent") {
     }
     for (let k of Object.keys(gradDemoData[feature])) {
         if (as === "percent") {
-            results.data[k] = zip(totals, gradDemoData[feature][k]).map(pair => pair[1] / pair[0] * 100);
+            results.data[k] = zip(totals, gradDemoData[feature][k]).map(pair => (pair[1] / pair[0] * 100).toFixed(2));
         } else {
             results.data[k] = gradDemoData[feature][k];
         }
@@ -99,7 +99,7 @@ async function retentionBy(feature, as="percent") {
         final: retentionData["grad-or-persisted-cs"].total//.map(Number.parseInt),
     };
     if (as === "percent") {
-        totals = zip(totals.init, totals.final).map(pair => pair[1] / pair[0] * 100);
+        totals = zip(totals.init, totals.final).map(pair => (pair[1] / pair[0] * 100).toFixed(2));
     }
 
     const ft_init = retentionData["cohort-start-size"][feature]
@@ -120,7 +120,7 @@ async function retentionBy(feature, as="percent") {
         };
 
         if (as === "percent") {
-            results.data[k] = zip(results.data[k].init, results.data[k].final).map(pair => pair[1] / pair[0] * 100);
+            results.data[k] = zip(results.data[k].init, results.data[k].final).map(pair => (pair[1] / pair[0] * 100).toFixed(2));
         }
     }
 
