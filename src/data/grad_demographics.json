@@ -1,18 +1,18 @@
 {
     "name": "CS Graduates by Year",
     "years": [2015, 2016, 2017, 2018, 2019],
-    "total-graduates": [97, 116, 112, 146, 179],
-    "legal-sex": {
+    "total_graduates": [97, 116, 112, 146, 179],
+    "legal_sex": {
         "Female": [10,19,12,15,22],
         "Male": [86,95,98,130,155],
         "Unknown": [1,2,2,1,2]
     },
-    "race-ethnicity": {
+    "race_ethnicity": {
         "Asian": [11, 18, 18, 13, 24],
-        "Black or African American": [1, 4, 2, 1, 1],
-        "Hispanic or Latino": [4, 8, 6, 15, 6],
+        "Black": [1, 4, 2, 1, 1],
+        "Hispanic": [4, 8, 6, 15, 6],
         "International": [6,4,7,18,17],
-        "Two or More Races": [2,4,6,10,10],
+        "Two": [2,4,6,10,10],
         "Unknown": [7,8,9,12,9],
         "White": [66,70,64,77,112]
     },
