@@ -1,8 +1,11 @@
 import React from "react";
 import "./Grid.css";
-import { Benchmark, Benchmark2 } from "./Benchmark.js";
+import { Benchmark2 } from "./Benchmark.js";
 import { Responsive, WidthProvider } from "react-grid-layout";
 import { pdxDataPercents } from "./apis/apiData";
+import GenderGrad from "./GenderGrad.js";
+import RaceGrad from "./RaceGrad.js";
+import Persistence from "./Persistence.js";
 //https://www.npmjs.com/package/react-grid-layout#installation
 
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
@@ -34,9 +37,9 @@ class Grid extends React.Component {
 
     const gridItems = [
       { id: 1, name: "PSU compared to Tier One CS", chart: () => {return (<Benchmark2 data={this.state.data1} />)}},
-      { id: 2, name: "Chart Two Goes Here", chart: chart2},
-      { id: 3, name: "Chart Three Goes Here", chart: chart3},
-      { id: 4, name: "Chart Four Goes Here",chart: chart4},
+      { id: 2, name: "PSU CS Grad Class by Legal Sex", chart: chart2},
+      { id: 3, name: "PSU CS Grad by Ethnicity", chart: chart3},
+      { id: 4, name: "PSU CS Persistence",chart: chart4},
     ];
 
     const layout = [
