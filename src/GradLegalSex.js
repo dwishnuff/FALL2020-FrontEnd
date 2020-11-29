@@ -33,7 +33,7 @@ const options = {
 		mode: "label",
 	},
 	responsive: true,
-	maintainAspectRatio: true,
+	maintainAspectRatio: false,
 };
 
 const colors = [
