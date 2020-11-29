@@ -41,7 +41,6 @@ function mergeData(datasets) {
     return { labels: res_labels, datasets: res_datasets };
 }
 
-
 // apply color styles to datasets, for use with react-chartjs-2
 //
 // arguments:

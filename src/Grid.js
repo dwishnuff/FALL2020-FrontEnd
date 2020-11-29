@@ -20,12 +20,14 @@ const chart3 = RaceGrad;
 const chart4 = Persistence;
 
 class Grid extends React.Component {
+  // needed to initialize state
   constructor() {
     super();
     this.state = { loaded: false };
   }
 
   componentDidMount() {
+    // set up the component by fetching data, and set appropriate state when the fetch succeeds
     pdxDataPercents("grad-demographics", "legal-sex").then(c => {
       this.setState({ legalSexPercent: c })
     }).catch(_ => {
@@ -41,8 +43,8 @@ class Grid extends React.Component {
   }
 
   render() {
+    // display "loading" if remote data hasn't successfully been fetched
     if (!this.state.loaded) { return (<p>Loading...</p>)}
-    console.log(this.state.legalSexPercent);
 
     const gridItems = [
       { id: 1, name: "PSU CS Grad Class by Legal Sex (percentages)", chart: () => {return (<GradLegalSex data={this.state.legalSexPercent} />)}},
