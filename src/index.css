@@ -5,9 +5,10 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: url('hands.png');
+  /*background: url('hands.png');
   background-repeat: repeat;
-  background-size: 70vw; 
+  background-size: 70vw; */
+  background-color: rgba(37, 45, 72, 0.9);
 }
 
 code {

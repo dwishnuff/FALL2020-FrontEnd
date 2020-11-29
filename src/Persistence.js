@@ -1,16 +1,19 @@
 import React from "react";
 import { Bar } from "react-chartjs-2";
+import chartdata from "./data/retention.json";
+
+const newdata = chartdata;
 
 const data = {
-  labels: [2015, 2016, 2017, 2018, 2019],
+  labels: newdata.years.slice(1).slice(-5), //get the last 5 years of data with slice
   datasets: [
     {
       type: "line",
       label: "Overall Starting Cohort",
-      borderColor: "rgb(0, 0, 0)",
+      borderColor: "rgb(37, 45, 72)",
       borderWidth: 2,
       fill: false,
-      data: [361, 313, 382, 355, 315],
+      data: newdata.cohort_start_size.total.slice(1).slice(-5),
     },
     {
       type: "line",
@@ -18,7 +21,7 @@ const data = {
       borderColor: "rgb(252, 70, 26)",
       borderWidth: 2,
       fill: false,
-      data: [59, 54, 65, 70, 58],
+      data: newdata.cohort_start_size.legal_sex.female.slice(1).slice(-5),
     },
     {
       type: "line",
@@ -26,28 +29,37 @@ const data = {
       borderColor: "rgb(249, 153, 0)",
       borderWidth: 2,
       fill: false,
-      data: [294,254,312,280,252],
+      data: newdata.cohort_start_size.legal_sex.male.slice(1).slice(-5),
     },
     {
         type: "bar",
         label: "Overall Persisted",
-        backgroundColor: "rgba(0, 0, 0, 0.7)",
-        data: [124,153,211,243,0],
+        backgroundColor: "rgba(37, 45, 72, 0.8)",
+        data: newdata.grad_or_persisted_cs.total.slice(1).slice(-5),
       },
     {
       type: "bar",
       label: "Female Persisted",
-      backgroundColor: "rgb(252, 70, 26)",
-      data: [18, 15, 35, 39, 0],
+      backgroundColor: "rgba(252, 70, 26, 0.8)",
+      data: newdata.grad_or_persisted_cs.legal_sex.female.slice(1).slice(-5),
     },
     {
       type: "bar",
       label: "Male Persisted",
-      backgroundColor: "rgb(249, 153, 0)",
-      data: [103, 137, 173, 202, 0],
+      backgroundColor: "rgba(249, 153, 0, 0.8)",
+      data: newdata.grad_or_persisted_cs.legal_sex.male.slice(1).slice(-5),
     },
   ],
 };
+
+const legend = {
+    display: true,
+    position: "bottom",
+    labels: {
+      fontColor: "#323130",
+      fontSize: 14
+    }
+  };
 
 const options = {
     scales: {
@@ -61,9 +73,12 @@ const options = {
     },
     tooltips: {
         mode: 'label',
-    }
+    },
+    responsive: true,
+    maintainAspectRatio: false,
   }
 
-const MultiType = () => <Bar data={data} options={options}/>;
+const MultiType = () => <Bar data={data} legend={legend} options={options}/>;
 
 export default MultiType;
+

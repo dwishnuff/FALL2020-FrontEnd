@@ -1,6 +1,9 @@
 import React from 'react'
 import { Chart } from 'react-charts'
- 
+import { Line } from 'react-chartjs-2'
+
+export { Benchmark, Benchmark2 };
+
 function Benchmark() {
   const data = React.useMemo(
     () => [
@@ -15,7 +18,7 @@ function Benchmark() {
     ],
     []
   )
- 
+
   const axes = React.useMemo(
     () => [
       { primary: true, type: 'linear', position: 'bottom' },
@@ -23,7 +26,7 @@ function Benchmark() {
     ],
     []
   )
- 
+
   const lineChart = (
     // A react-chart hyper-responsively and continuously fills the available
     // space of its parent element automatically
@@ -38,4 +41,33 @@ function Benchmark() {
   )
   return lineChart;
 }
-export default Benchmark;                              
+
+function Benchmark2(props) {
+  const options = {
+    scales: {
+      yAxes: [
+        {
+          ticks: {
+            beginAtZero: true,
+          },
+        },
+      ],
+    },
+  }
+
+  const data = props.data;
+  data.datasets = data.datasets.map((obj) => {obj.fill = false; obj.backgroundColor = 'rgb(255, 99, 132)'; return obj});
+
+  return (
+    // A react-chart hyper-responsively and continuously fills the available
+    // space of its parent element automatically
+    <div
+      style={{
+        width: '100%',
+        height: '100%'
+      }}
+    >
+      <Line data={data} options={options} />
+    </div>
+  );
+}
