@@ -17,20 +17,21 @@ const chart3 = Benchmark;
 const chart4 = Benchmark;
 
 class Grid extends React.Component {
+  // needed to initialize state
   constructor() {
     super();
     this.state = { data1: {}, loaded: false };
   }
 
   componentDidMount() {
-    if (!this.state.loaded) {
-      pdxDataPercents("grad-demographics", "legal-sex").then(c => this.setState({ data1: c, loaded: true }));
-    }
+    // set up the component by fetching data, and set appropriate state when the fetch succeeds
+    pdxDataPercents("grad-demographics", "legal-sex").then(c => this.setState({ data1: c, loaded: true }));
   }
 
   render() {
+    // display "loading" if remote data hasn't successfully been fetched
     if (!this.state.loaded) { return (<p>Loading...</p>)}
-    console.log(this.state.data1);
+
 
     const gridItems = [
       { id: 1, name: "PSU compared to Tier One CS", chart: () => {return (<Benchmark2 data={this.state.data1} />)}},
