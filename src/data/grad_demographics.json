@@ -2,7 +2,7 @@
     "name": "CS Graduates by Year",
     "years": [2015, 2016, 2017, 2018, 2019],
     "total-graduates": [97, 116, 112, 146, 179],
-    "legal-sex": {
+    "legal_sex": {
         "Female": [10,19,12,15,22],
         "Male": [86,95,98,130,155],
         "Unknown": [1,2,2,1,2]

@@ -1,0 +1,5 @@
+{
+    "name": "2016 Grad Rates By Legal Sex",
+    "Schools": ["PSU", "Cal", "CalTech", "CMU", "Stanford", "MIT", "Cornell", "Georgia Tech", "Princeton", "UofI Urbana-Champaign"],
+    "Percent_Female_Grads": [16, 24, 30, 29, 32, 37, 32,22,38,17]
+}

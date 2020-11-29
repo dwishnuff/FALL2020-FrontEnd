@@ -1,25 +1,28 @@
 import React from 'react'
 import { Bar } from 'react-chartjs-2'
 import './GenderGrad.css'
+import chartdata from "./data/grad_demographics.json"
+
+const newdata = chartdata;
 
  
 const data = {
-    labels: ['2015', '2016', '2017', '2018', '2019'],
+    labels: newdata.years,
     datasets: [
     
       {
         label: 'Male',
-        data: [86, 95, 98, 130, 155],
+        data: newdata.legal_sex.Male,
         backgroundColor: 'rgb(249, 153, 0)',
       },
       {
         label: 'Legal Sex Unknown',
-        data: [1, 2, 2, 1, 2],
+        data: newdata.legal_sex.Unknown,
         backgroundColor: 'rgb(192,192,192)',
       },
       {
         label: 'Female',
-        data: [10, 19, 12, 15, 22],
+        data: newdata.legal_sex.Female,
         backgroundColor: 'rgb(252, 70, 26)' ,
       }
     ],
