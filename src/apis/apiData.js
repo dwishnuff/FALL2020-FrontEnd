@@ -2,19 +2,41 @@
 // that work nicely with react-charts and similar libraries.
 
 import * as ipeds from './ipeds.js';
-import { range, zip } from './utils.js';
+import { mergeArrays, range } from './utils.js';
 import { gradDemoBy, retentionBy } from './pdx_data.js';
 
-export { chartData, pdxDataCounts, pdxDataPercents, queryIpeds };
+export { chartData, mergeData, pdxDataCounts, pdxDataPercents, queryIpeds };
 export * as ipeds from './ipeds_consts.js';
 
 // convert arrays of x-values and y-values into an object
 // that is directly usable as the data prop of a line chart
 function chartData(xArray, yArray, series="") {
     return {
-        label: series,
-        data: zip(xArray, yArray)
+        labels: xArray,
+        datasets: [
+            {
+                label: series,
+                data: yArray
+            }
+        ]
     };
+}
+
+// in-order merge of datasets with possibly-overlapping, sortable
+// x-values
+function mergeData(datasets) {
+    const res_labels = datasets.map(d => d.labels).reduce((a, e) => mergeArrays(a, e));
+
+    let res_datasets = [];
+    for (let d of datasets) {
+        let y_temp = new Array(res_labels.length).fill(undefined);
+        for (let i, v in d.labels) {
+            y_temp[res_labels.findIndex(v)] = d.data[i];
+        }
+        res_datasets.push({label: d.label, data: y_temp});
+    }
+
+    return { labels: res_labels, datasets: res_datasets };
 }
 
 // get CS graduate demographic data or CS retention data
@@ -47,7 +69,7 @@ async function pdxDataPercents(type, feature) {
         default:
             break;
     }
-    return res;
+    return mergeData(res);
 }
 
 // get CS graduate demographic data or CS retention data
@@ -95,7 +117,7 @@ async function pdxDataCounts(type, feature, keepTotals=true) {
             break;
     }
 
-    return res;
+    return mergeData(res);
 }
 
 // Get time series of various attributes available from the IPEDS dataset

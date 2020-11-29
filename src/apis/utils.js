@@ -1,4 +1,24 @@
-export { range, unzip, zip };
+export { mergeArrays, range, unzip, zip };
+
+
+// sorted merge, keeping exactly one copy of each unique element
+function mergeArrays(a, b) {
+    let i = 0;
+    let res = [];
+    res = res.concat(a).sort();
+    for (let n of b) {
+        i = res.findIndex(e => n <= e);
+        if (i === -1) {
+            // n is the max, so push it to the back
+            res.push(n);
+        } else if (n !== res[i]) {
+            // insert in sorted order
+            res.splice(i, 0, n);
+        }
+        // else if n is already in the array do nothing
+    }
+    return res;
+}
 
 // Range from start (inclusive) to end (exclusive)
 function range(start, end, interval=1) {
