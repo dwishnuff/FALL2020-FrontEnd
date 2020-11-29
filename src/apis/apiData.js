@@ -2,10 +2,10 @@
 // that work nicely with react-charts and similar libraries.
 
 import * as ipeds from './ipeds.js';
-import { mergeArrays, range } from './utils.js';
+import { mergeArrays, range, zip } from './utils.js';
 import { gradDemoBy, retentionBy } from './pdx_data.js';
 
-export { chartData, mergeData, pdxDataCounts, pdxDataPercents, queryIpeds };
+export { chartData, mergeData, applyColors, pdxDataCounts, pdxDataPercents, queryIpeds };
 export * as ipeds from './ipeds_consts.js';
 
 // convert arrays of x-values and y-values into an object
@@ -39,6 +39,24 @@ function mergeData(datasets) {
     }
 
     return { labels: res_labels, datasets: res_datasets };
+}
+
+// apply color styles to datasets, for use with react-chartjs-2
+//
+// arguments:
+//   data :: { labels: [...], datasets: [{ label: String, data: [...] }, ...] }
+//   colors :: [{fill?: Boolean, backgroundColor?: rgbString, ...}, ...]
+// The colors array must be longer than data.datasets or some data will be omitted.
+function applyColors(data, colors) {
+    return {
+        labels: data.labels,
+        datasets: zip(data.datasets, colors).map(([d, c]) => {
+            for (let k of Object.keys(c)) {
+                d[k] = c[k];
+            }
+            return d;
+        })
+    };
 }
 
 // get CS graduate demographic data or CS retention data
