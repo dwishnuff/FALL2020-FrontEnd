@@ -1,5 +1,6 @@
 import React from 'react'
 import { Chart } from 'react-charts'
+import { Line } from 'react-chartjs-2'
 import { pdxDataPercents } from './apis/apiData'
 
 export { Benchmark, Benchmark2 };
@@ -43,13 +44,17 @@ function Benchmark() {
 }
 
 function Benchmark2(props) {
-  const axes = React.useMemo(
-    () => [
-      { primary: true, type: 'linear', position: 'bottom' },
-      { type: 'linear', position: 'left' }
-    ],
-    []
-  );
+  const options = {
+    scales: {
+      yAxes: [
+        {
+          ticks: {
+            beginAtZero: true,
+          },
+        },
+      ],
+    },
+  }
 
   const data = props.data;
 
@@ -62,7 +67,7 @@ function Benchmark2(props) {
         height: '100%'
       }}
     >
-      <Chart data={data} axes={axes} />
+      <Line data={data} options={options} />
     </div>
   )
   return lineChart;

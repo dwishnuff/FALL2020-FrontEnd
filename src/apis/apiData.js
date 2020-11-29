@@ -30,7 +30,7 @@ function mergeData(datasets) {
     let res_datasets = [];
     for (let d of datasets) {
         let y_temp = new Array(res_labels.length).fill(undefined);
-        for (let i, v in d.labels) {
+        for (let [i, v] in d.labels) {
             y_temp[res_labels.findIndex(v)] = d.data[i];
         }
         res_datasets.push({label: d.label, data: y_temp});
