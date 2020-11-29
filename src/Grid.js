@@ -1,6 +1,6 @@
 import React from "react";
 import "./Grid.css";
-import { Benchmark2 } from "./Benchmark.js";
+import { GradLegalSex } from "./GradLegalSex.js";
 import { Responsive, WidthProvider } from "react-grid-layout";
 import { pdxDataPercents } from "./apis/apiData";
 import GenderGrad from "./GenderGrad.js";
@@ -36,7 +36,7 @@ class Grid extends React.Component {
     console.log(this.state.data1);
 
     const gridItems = [
-      { id: 1, name: "PSU compared to Tier One CS", chart: () => {return (<Benchmark2 data={this.state.data1} />)}},
+      { id: 1, name: "PSU compared to Tier One CS", chart: () => {return (<GradLegalSex data={this.state.data1} />)}},
       { id: 2, name: "PSU CS Grad Class by Legal Sex", chart: chart2},
       { id: 3, name: "PSU CS Grad by Ethnicity", chart: chart3},
       { id: 4, name: "PSU CS Persistence",chart: chart4},
