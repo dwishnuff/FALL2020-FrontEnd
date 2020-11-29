@@ -18,8 +18,7 @@ const gradDemo = baseUrl + "grad_demographics.json";
 const retention = baseUrl + "retention.json";
 
 async function fetchJson(url) {
-    let result = await fetch(url).then((r) => r.json()).finally((e) => e);
-    return result;
+    return fetch(url).then((r) => r.json());
 }
 
 // return CS graduate demographic data partitioned on a feature such as
@@ -46,7 +45,7 @@ async function fetchJson(url) {
 //
 // totals are only returned with the data if not in "percent" mode
 async function gradDemoBy(feature, as="percent") {
-    const gradDemoData = await fetchJson(gradDemo);
+    let gradDemoData = await fetchJson(gradDemo);
     const years = gradDemoData.years;
     const totals = gradDemoData["total-graduates"];
 

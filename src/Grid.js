@@ -19,17 +19,21 @@ const chart4 = Benchmark;
 class Grid extends React.Component {
   constructor() {
     super();
-    this.state = { chart1: {} };
+    this.state = { data1: {}, loaded: false };
   }
 
   componentDidMount() {
-    pdxDataPercents("grad-demographics", "percent").then(c => this.setState({ data1: c }));
+    if (!this.state.loaded) {
+      pdxDataPercents("grad-demographics", "legal-sex").then(c => this.setState({ data1: c, loaded: true }));
+    }
   }
 
   render() {
-    console.log(this.state.chart1);
+    if (!this.state.loaded) { return (<p>Loading...</p>)}
+    console.log(this.state.data1);
+
     const gridItems = [
-      { id: 1, name: "PSU compared to Tier One CS", chart: Benchmark2({data: this.state.data1})},
+      { id: 1, name: "PSU compared to Tier One CS", chart: () => {return (<Benchmark2 data={this.state.data1} />)}},
       { id: 2, name: "Chart Two Goes Here", chart: chart2},
       { id: 3, name: "Chart Three Goes Here", chart: chart3},
       { id: 4, name: "Chart Four Goes Here",chart: chart4},

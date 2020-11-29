@@ -28,12 +28,14 @@ function mergeData(datasets) {
     const res_labels = datasets.map(d => d.labels).reduce((a, e) => mergeArrays(a, e));
 
     let res_datasets = [];
-    for (let d of datasets) {
-        let y_temp = new Array(res_labels.length).fill(undefined);
-        for (let [i, v] in d.labels) {
-            y_temp[res_labels.findIndex(v)] = d.data[i];
+    for (let ds of datasets) {
+        let y_temp = new Array(res_labels.length).fill(0);
+        for (let d of ds.datasets) {
+            for (let [i, v] of ds.labels.entries()) {
+                y_temp[res_labels.findIndex((x) => x === v)] = d.data[i];
+            }
+            res_datasets.push({label: d.label, data: y_temp});
         }
-        res_datasets.push({label: d.label, data: y_temp});
     }
 
     return { labels: res_labels, datasets: res_datasets };
