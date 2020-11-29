@@ -80,7 +80,9 @@ const data = {
     },
     tooltips: {
         mode: 'label',
-    }
+    },
+    responsive: true,
+    maintainAspectRatio: false,
   }
   
   const LineChart = () => (

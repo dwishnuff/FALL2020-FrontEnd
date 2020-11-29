@@ -73,7 +73,9 @@ const options = {
     },
     tooltips: {
         mode: 'label',
-    }
+    },
+    responsive: true,
+    maintainAspectRatio: false,
   }
 
 const MultiType = () => <Bar data={data} legend={legend} options={options}/>;
