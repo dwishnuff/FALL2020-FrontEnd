@@ -27,15 +27,15 @@ class Grid extends React.Component {
 
   componentDidMount() {
     pdxDataPercents("grad-demographics", "legal-sex").then(c => {
-      this.setState({ legalSexPercent: c, loaded: true })
+      this.setState({ legalSexPercent: c })
     }).catch(_ => {
       this.setState({loaded: false})
     }).finally(_ => {
-      pdxDataCounts("grad-demographics", "legal-sex").then(c => {
-        this.setState({ legalSexCounts: c, loaded: true })
+      pdxDataCounts("grad-demographics", "legal-sex", false).then(c => {
+        this.setState({ legalSexCounts: c })
       }).catch(_ => {
         this.setState({loaded: false})
-      })
+      }).finally(_ => this.setState({ loaded: true }))
     }
 );
   }
