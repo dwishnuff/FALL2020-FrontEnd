@@ -1,43 +1,55 @@
 import React from "react";
 import "./Grid.css";
-import { Benchmark, Benchmark2 } from "./Benchmark.js";
+import { GradLegalSex } from "./GradLegalSex.js";
 import { Responsive, WidthProvider } from "react-grid-layout";
-import { pdxDataPercents } from "./apis/apiData";
+import { pdxDataCounts, pdxDataPercents } from "./apis/apiData";
+import GenderGrad from "./GenderGrad.js";
+import RaceGrad from "./RaceGrad.js";
+import Persistence from "./Persistence.js";
 //https://www.npmjs.com/package/react-grid-layout#installation
 
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
 
 //placeholder for second chart
-const chart2 = Benchmark;
+const chart2 = GenderGrad;
 
 //placeholder for third chart
-const chart3 = Benchmark;
+const chart3 = RaceGrad;
 
 //placeholder for fourth chart
-const chart4 = Benchmark;
+const chart4 = Persistence;
 
 class Grid extends React.Component {
   // needed to initialize state
   constructor() {
     super();
-    this.state = { data1: {}, loaded: false };
+    this.state = { loaded: false };
   }
 
   componentDidMount() {
     // set up the component by fetching data, and set appropriate state when the fetch succeeds
-    pdxDataPercents("grad-demographics", "legal-sex").then(c => this.setState({ data1: c, loaded: true }));
+    pdxDataPercents("grad-demographics", "legal-sex").then(c => {
+      this.setState({ legalSexPercent: c, loaded: true })
+    }).catch(_ => {
+      this.setState({loaded: false})
+    }).finally(_ => {
+      pdxDataCounts("grad-demographics", "legal-sex").then(c => {
+        this.setState({ legalSexCounts: c, loaded: true })
+      }).catch(_ => {
+        this.setState({loaded: false})
+      })
+    });
   }
 
   render() {
     // display "loading" if remote data hasn't successfully been fetched
     if (!this.state.loaded) { return (<p>Loading...</p>)}
 
-
     const gridItems = [
-      { id: 1, name: "PSU compared to Tier One CS", chart: () => {return (<Benchmark2 data={this.state.data1} />)}},
-      { id: 2, name: "Chart Two Goes Here", chart: chart2},
-      { id: 3, name: "Chart Three Goes Here", chart: chart3},
-      { id: 4, name: "Chart Four Goes Here",chart: chart4},
+      { id: 1, name: "PSU CS Grad Class by Legal Sex (percentages)", chart: () => {return (<GradLegalSex data={this.state.legalSexPercent} />)}},
+      { id: 2, name: "PSU CS Grad Class by Legal Sex (counts)", chart: () => {return (<GradLegalSex data={this.state.legalSexCounts} />)}},
+      { id: 3, name: "PSU CS Grad by Ethnicity", chart: chart3},
+      { id: 4, name: "PSU CS Persistence",chart: chart4},
     ];
 
     const layout = [

@@ -48,15 +48,18 @@ npm install react-dom\
 npm install web-vitals\
 npm install react-scripts\
 npm install react-charts\
-npm install gh-pages --save-dev
+npm install gh-pages --save-dev\
+npm install react--chartjs-2 chart.js\
+
 
 ## gh-pages deploy
 npm run deploy locally to redeploy to gh-pages\
 https://dev.to/yuribenjamin/how-to-deploy-react-app-in-github-pages-2a1f
 
 ## color themes
-#006d8c -- blue\
-#f999000 -- orange\
-#f27775 -- pink\
-#252d48 -- navy\
-#fc461a -- red\
+#006d8c -- rgb(0, 109, 140) --blue\
+#f999000 -- rgb(249, 153, 0) --orange (male)\
+#f27775 -- rgb(242, 119, 117) --pink\
+#252d48 -- rgb(37, 45, 72) --navy\
+#fc461a -- rgb(252, 70, 26) -- red (female)\
+#C0C0C0 -- rgb(192,192,192) -- silver (legal sex unknown)
