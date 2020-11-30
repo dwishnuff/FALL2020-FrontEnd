@@ -135,7 +135,13 @@ async function pdxDataCounts(type, feature, keepTotals = true) {
 			});
 			for (let k of Object.keys(data.data)) {
 				if (keepTotals || k !== "totals") {
-					res.push(chartData(data.years, data.data[k], k));
+          res.push(
+            chartData(
+              data.years,
+              data.data[k],
+              k
+            )
+          );
 				}
 			}
 			break;
@@ -146,10 +152,18 @@ async function pdxDataCounts(type, feature, keepTotals = true) {
 			for (let k of Object.keys(data.data)) {
 				if (keepTotals || k !== "totals") {
 					res.push(
-						chartData(data.years, data.data[k].init, k + " start cohort")
+						chartData(
+              data.years,
+              data.data[k].init,
+              k + " start cohort"
+            )
 					);
 					res.push(
-						chartData(data.years, data.data[k].final, k + " persisted in CS")
+						chartData(
+              data.years,
+              data.data[k].final,
+              k + " persisted in CS"
+            )
 					);
 				}
 			}
