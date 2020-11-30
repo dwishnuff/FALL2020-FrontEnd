@@ -1,3 +1,14 @@
+/*
+  Creates and loads the responsive 
+  grid component which structures the 
+  main page.  
+
+  Utilizes data from apiData.js to
+  pass to each chart component as props.
+
+  Renders each chart to a grid component. 
+  */
+
 import React from "react";
 import "./Grid.css";
 import { GradLegalSex } from "./GradLegalSex.js";
@@ -27,35 +38,44 @@ class Grid extends React.Component {
   componentDidMount() {
     // set up the component by fetching data, and set appropriate state when the fetch succeeds
 
-    pdxDataPercents("grad-demographics", "legal-sex").then(c => {
-      // data loaded, store in state object
-      this.setState({ legalSexPercent: c })
-    }).catch(_ => {
-      // failed load, ensure loaded=false for this dataset
-      this.setState({ 0: false })
-    }).finally(_ => {
-      this.setState({ 0: true })
-    });
+    pdxDataPercents("grad-demographics", "legal-sex")
+      .then((c) => {
+        // data loaded, store in state object
+        this.setState({ legalSexPercent: c });
+      })
+      .catch((_) => {
+        // failed load, ensure loaded=false for this dataset
+        this.setState({ 0: false });
+      })
+      .finally((_) => {
+        this.setState({ 0: true });
+      });
 
-    pdxDataCounts("grad-demographics", "legal-sex", false).then(c => {
-      // data loaded, store in state object
-      this.setState({ legalSexCounts: c })
-    }).catch(_ => {
-      // failed load, ensure loaded=false for this dataset
-      this.setState({ 1: false})
-    }).finally(_ => {
-      this.setState({ 1: true })
-    });
+    pdxDataCounts("grad-demographics", "legal-sex", false)
+      .then((c) => {
+        // data loaded, store in state object
+        this.setState({ legalSexCounts: c });
+      })
+      .catch((_) => {
+        // failed load, ensure loaded=false for this dataset
+        this.setState({ 1: false });
+      })
+      .finally((_) => {
+        this.setState({ 1: true });
+      });
 
-    pdxDataCounts("retention", "legal-sex", true).then(c => {
-      this.setState({ legalSexPersistence: c })
-    }).catch(_ => {
-      // failed load, ensure loaded=false for this dataset
-      this.setState({ 3: false})
-    }).finally(_ => {
-      console.log("loaded: ", this.state.legalSexPersistence);
-      this.setState({ 3: true });
-    });
+    pdxDataCounts("retention", "legal-sex", true)
+      .then((c) => {
+        this.setState({ legalSexPersistence: c });
+      })
+      .catch((_) => {
+        // failed load, ensure loaded=false for this dataset
+        this.setState({ 3: false });
+      })
+      .finally((_) => {
+        console.log("loaded: ", this.state.legalSexPersistence);
+        this.setState({ 3: true });
+      });
 
     // TODO: load other datasets
   }
@@ -65,35 +85,46 @@ class Grid extends React.Component {
     const gridItems = [
       {
         id: 1,
-        name: "PSU CS Grad Class by Legal Sex (percentages)",
+        name: "PSU CS Grad Class by Legal Sex (%)",
         chart: () => {
           if (this.state[0]) {
-            return (<GradLegalSex data={this.state.legalSexPercent} isPercent={true} />);
-          } else { return null; }
-        }
+            return (
+              <GradLegalSex
+                data={this.state.legalSexPercent}
+                isPercent={true}
+              />
+            );
+          } else {
+            return null;
+          }
+        },
       },
       {
         id: 2,
-        name: "PSU CS Grad Class by Legal Sex (counts)",
+        name: "PSU CS Grad Class by Legal Sex (#)",
         chart: () => {
           if (this.state[1]) {
-            return (<GradLegalSex data={this.state.legalSexCounts} />);
-          } else { return null; }
-        }
+            return <GradLegalSex data={this.state.legalSexCounts} />;
+          } else {
+            return null;
+          }
+        },
       },
       {
         id: 3,
         name: "PSU CS Grad by Ethnicity",
-        chart: chart3
+        chart: chart3,
       },
       {
         id: 4,
         name: "PSU CS Persistence",
         chart: () => {
           if (this.state[3]) {
-            return (<Persistence data={this.state.legalSexPersistence} />);
-          } else { return null; }
-        }
+            return <Persistence data={this.state.legalSexPersistence} />;
+          } else {
+            return null;
+          }
+        },
       },
       // TODO: add IPEDS institution 6-year grad rates by legal sex
     ];
@@ -106,39 +137,39 @@ class Grid extends React.Component {
     ];
 
     return (
-        <div class = "grid">
-      <ResponsiveReactGridLayout
-        //layouts={{ lg:layout}, {md:layout}, {sm:layout}}
-        layouts={{ lg: layout }}
-        //breakpoints={{lg: 1200, md: 996, sm: 768}}
-        measureBeforeMount={true}
-        className="layout"
-        autoSize={true}
-        rowHeight={this.props.rowHeight}
-        isDragable={true}
-        isResizable={true}
-        onDrag={this.onDragging}
-        onDragStop={this.onMoveCard}
-        onResizeStop={this.onResizeCard}
-        margin={[20, 20]}
-      >
-        {gridItems.map((item, i) => {
-          return (
-            <div key={item.id} className="grid-item">
-              <h3>{item.name}</h3>
-              <div
-                style={{
-                  width: "90%",
-                  height: "80%",
-                  margin: "0 auto"
-                }}
-              >
-                <item.chart />
+      <div class="grid">
+        <ResponsiveReactGridLayout
+          //layouts={{ lg:layout}, {md:layout}, {sm:layout}}
+          layouts={{ lg: layout }}
+          //breakpoints={{lg: 1200, md: 996, sm: 768}}
+          measureBeforeMount={true}
+          className="layout"
+          autoSize={true}
+          rowHeight={this.props.rowHeight}
+          isDragable={true}
+          isResizable={true}
+          onDrag={this.onDragging}
+          onDragStop={this.onMoveCard}
+          onResizeStop={this.onResizeCard}
+          margin={[20, 20]}
+        >
+          {gridItems.map((item, i) => {
+            return (
+              <div key={item.id} className="grid-item">
+                <h3>{item.name}</h3>
+                <div
+                  style={{
+                    width: "90%",
+                    height: "80%",
+                    margin: "0 auto",
+                  }}
+                >
+                  <item.chart />
+                </div>
               </div>
-            </div>
-          );
-        })}
-      </ResponsiveReactGridLayout>
+            );
+          })}
+        </ResponsiveReactGridLayout>
       </div>
     );
   }
