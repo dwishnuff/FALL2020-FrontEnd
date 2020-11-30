@@ -7,8 +7,6 @@ import "./index.css";
 import App from "./App";
 import Grid from "./Grid";
 import reportWebVitals from "./reportWebVitals";
-import { ipeds, queryIpeds } from "./apis/apiData";
-
 
 ReactDOM.render(
   <div>
