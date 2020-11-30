@@ -11,7 +11,7 @@ Research and Planning (OIRP) as a part of an ongoing
 independent study project.   
 
 ## Student Team Members
-Danielle Beyer 
+Danielle Beyer\
 Evan Johnson
 
 ## npm installs required
@@ -25,8 +25,13 @@ npm install gh-pages --save-dev\
 npm install react--chartjs-2 chart.js\
 
 ## gh-pages deploy
+The site is deployed on GitHub pages at:\
+[https://dwishnuff.github.io/FALL2020-FrontEnd/](https://dwishnuff.github.io/FALL2020-FrontEnd/)
+
 ### `npm run deploy` 
-locally to redeploy to gh-pages\
+to redeploy with updates, run 'npm run deploy' locally to build and push to gh-pages\
+
+The tutorial below was used to implement the gh-pages deploy.\
 https://dev.to/yuribenjamin/how-to-deploy-react-app-in-github-pages-2a1f
 
 ## color themes
