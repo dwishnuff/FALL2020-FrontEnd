@@ -146,10 +146,10 @@ async function pdxDataCounts(type, feature, keepTotals = true) {
 			for (let k of Object.keys(data.data)) {
 				if (keepTotals || k !== "totals") {
 					res.push(
-						chartData(data.years, data.data[k].init, "initial" + k)
+						chartData(data.years, data.data[k].init, k + " start cohort")
 					);
 					res.push(
-						chartData(data.years, data.data[k].final, "final" + k)
+						chartData(data.years, data.data[k].final, k + " persisted in CS")
 					);
 				}
 			}
