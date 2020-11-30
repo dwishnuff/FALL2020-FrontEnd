@@ -11,7 +11,7 @@ import Persistence from "./Persistence.js";
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
 
 //placeholder for second chart
-const chart2 = GenderGrad;
+// const chart2 = GenderGrad;
 
 //placeholder for third chart
 const chart3 = RaceGrad;
@@ -23,34 +23,67 @@ class Grid extends React.Component {
   // needed to initialize state
   constructor() {
     super();
-    this.state = { loaded: false };
+    // set index of each dataset to false
+    this.state = { 0: false, 1: false, 2: false, 3: false };
   }
 
   componentDidMount() {
     // set up the component by fetching data, and set appropriate state when the fetch succeeds
     pdxDataPercents("grad-demographics", "legal-sex").then(c => {
+      // data loaded, store in state object
       this.setState({ legalSexPercent: c })
     }).catch(_ => {
-      this.setState({loaded: false})
+      // failed load, ensure loaded=false for this dataset
+      this.setState({ 0: false })
     }).finally(_ => {
-      pdxDataCounts("grad-demographics", "legal-sex", false).then(c => {
-        this.setState({ legalSexCounts: c })
-      }).catch(_ => {
-        this.setState({loaded: false})
-      }).finally(_ => this.setState({ loaded: true }))
-    }
-);
+      this.setState({ 0: true })
+    });
+
+    pdxDataCounts("grad-demographics", "legal-sex", false).then(c => {
+      // data loaded, store in state object
+      this.setState({ legalSexCounts: c })
+    }).catch(_ => {
+      // failed load, ensure loaded=false for this dataset
+      this.setState({ 1: false})
+    }).finally(_ => {
+      this.setState({ 1: true })
+    });
+
+    // these datasets are hard-coded
+    this.setState({ 2: true, 3: true });
   }
 
   render() {
-    // display "loading" if remote data hasn't successfully been fetched
-    if (!this.state.loaded) { return (<p>Loading...</p>)}
-
+    // conditionally avoid rendering unloaded data
     const gridItems = [
-      { id: 1, name: "PSU CS Grad Class by Legal Sex (percentages)", chart: () => {return (<GradLegalSex data={this.state.legalSexPercent} />)}},
-      { id: 2, name: "PSU CS Grad Class by Legal Sex (counts)", chart: () => {return (<GradLegalSex data={this.state.legalSexCounts} />)}},
-      { id: 3, name: "PSU CS Grad by Ethnicity", chart: chart3},
-      { id: 4, name: "PSU CS Persistence",chart: chart4},
+      {
+        id: 1,
+        name: "PSU CS Grad Class by Legal Sex (percentages)",
+        chart: () => {
+          if (this.state[0]) {
+            return (<GradLegalSex data={this.state.legalSexPercent} />);
+          } else { return null; }
+        }
+      },
+      {
+        id: 2,
+        name: "PSU CS Grad Class by Legal Sex (counts)",
+        chart: () => {
+          if (this.state[1]) {
+            return (<GradLegalSex data={this.state.legalSexCounts} />);
+          } else { return null; }
+        }
+      },
+      {
+        id: 3,
+        name: "PSU CS Grad by Ethnicity",
+        chart: chart3
+      },
+      {
+        id: 4,
+        name: "PSU CS Persistence",
+        chart: chart4
+      },
     ];
 
     const layout = [
