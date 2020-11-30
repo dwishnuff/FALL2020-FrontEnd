@@ -43,12 +43,17 @@ function unzip(arr) {
 }
 
 // zip :: [A] -> [B] -> [[A, B]]
+// (should work with any number of arguments)
 function zip(a, b) {
+	if (arguments.length < 1) {
+		return undefined;
+	}
+
 	const len = Math.min(a.length, b.length);
 
 	let res = [];
 	for (let i = 0; i < len; i++) {
-		res.push([a[i], b[i]]);
+		res.push(Array.from(arguments).map(arr => arr[i]));
 	}
 
 	return res;
