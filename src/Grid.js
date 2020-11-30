@@ -1,3 +1,14 @@
+/*
+  Creates and loads the responsive 
+  grid component which structures the 
+  main page.  
+
+  Utilizes data from apiData.js to
+  pass to each chart component as props.
+
+  Renders each chart to a grid component. 
+  */
+
 import React from "react";
 import "./Grid.css";
 import { GradLegalSex } from "./GradLegalSex.js";
@@ -73,7 +84,7 @@ class Grid extends React.Component {
     const gridItems = [
       {
         id: 1,
-        name: "PSU CS Grad Class by Legal Sex (percentages)",
+        name: "PSU CS Grad Class by Legal Sex (%)",
         chart: () => {
           if (this.state[1]) {
             return (<GradLegalSex data={this.state.legalSexPercent} isPercent={true} />);
@@ -82,7 +93,7 @@ class Grid extends React.Component {
       },
       {
         id: 2,
-        name: "PSU CS Grad Class by Legal Sex (counts)",
+        name: "PSU CS Grad Class by Legal Sex (#)",
         chart: () => {
           if (this.state[2]) {
             return (<GradLegalSex data={this.state.legalSexCounts} />);
@@ -92,7 +103,7 @@ class Grid extends React.Component {
       {
         id: 3,
         name: "PSU CS Grad by Ethnicity",
-        chart: chart3
+        chart: chart3,
       },
       {
         id: 4,
@@ -122,39 +133,39 @@ class Grid extends React.Component {
     ];
 
     return (
-        <div class = "grid">
-      <ResponsiveReactGridLayout
-        //layouts={{ lg:layout}, {md:layout}, {sm:layout}}
-        layouts={{ lg: layout }}
-        //breakpoints={{lg: 1200, md: 996, sm: 768}}
-        measureBeforeMount={true}
-        className="layout"
-        autoSize={true}
-        rowHeight={this.props.rowHeight}
-        isDragable={true}
-        isResizable={true}
-        onDrag={this.onDragging}
-        onDragStop={this.onMoveCard}
-        onResizeStop={this.onResizeCard}
-        margin={[20, 20]}
-      >
-        {gridItems.map((item, i) => {
-          return (
-            <div key={item.id} className="grid-item">
-              <h3>{item.name}</h3>
-              <div
-                style={{
-                  width: "90%",
-                  height: "80%",
-                  margin: "0 auto"
-                }}
-              >
-                <item.chart />
+      <div class="grid">
+        <ResponsiveReactGridLayout
+          //layouts={{ lg:layout}, {md:layout}, {sm:layout}}
+          layouts={{ lg: layout }}
+          //breakpoints={{lg: 1200, md: 996, sm: 768}}
+          measureBeforeMount={true}
+          className="layout"
+          autoSize={true}
+          rowHeight={this.props.rowHeight}
+          isDragable={true}
+          isResizable={true}
+          onDrag={this.onDragging}
+          onDragStop={this.onMoveCard}
+          onResizeStop={this.onResizeCard}
+          margin={[20, 20]}
+        >
+          {gridItems.map((item, i) => {
+            return (
+              <div key={item.id} className="grid-item">
+                <h3>{item.name}</h3>
+                <div
+                  style={{
+                    width: "90%",
+                    height: "80%",
+                    margin: "0 auto",
+                  }}
+                >
+                  <item.chart />
+                </div>
               </div>
-            </div>
-          );
-        })}
-      </ResponsiveReactGridLayout>
+            );
+          })}
+        </ResponsiveReactGridLayout>
       </div>
     );
   }

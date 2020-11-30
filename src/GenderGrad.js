@@ -1,3 +1,15 @@
+/* 
+  This file renders a stacked bar chart that 
+  breaks out graduation classes by Legal Sex.
+
+  After updating charts to use the apiData.js
+  utility, a new .js file was created, 
+  'GradLegalSex.js'. 
+
+  Thus, this file is deprecated but retained 
+  in case it ever needs to be re-implemented.
+  */
+
 import React from "react";
 import { Bar } from "react-chartjs-2";
 import "./GenderGrad.css";
