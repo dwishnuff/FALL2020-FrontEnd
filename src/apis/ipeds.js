@@ -94,15 +94,13 @@ async function getFallRetention(unitid, start = _.EARLIEST, end = _.LATEST) {
 	for (let year = start; year <= end; year++) {
 		let url = new URL(`${api}/${year}/?${params}`, BASE);
 
-		let r = await fetch(url)
-			.then((e) => {
+		let r = await fetch(url).then((e) => {
 				// handle HTTP response code
 				if (e.ok) {
 					return e.json();
 				}
 				// TODO: handle errors
-			})
-			.then((data) => {
+			}).then((data) => {
 				// TODO: make this more robust in case of missing data
 				return data.results[0]["retention_rate"];
 			});
