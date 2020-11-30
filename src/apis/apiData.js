@@ -190,14 +190,17 @@ async function queryIpeds(
 
 	const years = range(startYear, endYear);
 	switch (feature) {
+    // fall enrollment data
 		case ipeds.FALL_ENROLLMENT:
 			let res = await ipeds.getFallEnrollmentByRace(unitid, startYear, endYear, filters);
       return res.map(({ label, data }) => chartData(years, data, label));
+    // retention based on returns in fall
 		case ipeds.FALL_RETENTION:
 			return chartData(
 					years,
 					await ipeds.getFallRetention(unitid, startYear, endYear, filters)
-				);
+        );
+    // graduates within 6 years
     case ipeds.GRAD_6YR:
       let gradRates = await ipeds.getGradRates(unitid, startYear, endYear);
       let datasets = Object.entries(gradRates).map(([k, v]) => 
