@@ -21,7 +21,7 @@ class Grid extends React.Component {
     super();
     // set index of each dataset to false
     // TODO: use meaningful property names?
-    this.state = { 0: false, 1: false, 2: false, 3: false };
+    this.state = { 0: false, 1: false, 2: true, 3: false };
   }
 
   componentDidMount() {
@@ -47,8 +47,15 @@ class Grid extends React.Component {
       this.setState({ 1: true })
     });
 
-    // these datasets are hard-coded
-    this.setState({ 2: true, 3: true });
+    pdxDataCounts("retention", "legal-sex", true).then(c => {
+      this.setState({ legalSexPersistence: c })
+    }).catch(_ => {
+      // failed load, ensure loaded=false for this dataset
+      this.setState({ 3: false})
+    }).finally(_ => {
+      console.log("loaded: ", this.state.legalSexPersistence);
+      this.setState({ 3: true });
+    });
 
     // TODO: load other datasets
   }
@@ -82,7 +89,11 @@ class Grid extends React.Component {
       {
         id: 4,
         name: "PSU CS Persistence",
-        chart: chart4
+        chart: () => {
+          if (this.state[3]) {
+            return (<Persistence data={this.state.legalSexPersistence} />);
+          } else { return null; }
+        }
       },
     ];
 
