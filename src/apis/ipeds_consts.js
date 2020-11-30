@@ -14,3 +14,10 @@ export const LATEST = 2018;
 
 // unitIDs
 export const PDX_UNITID = 209807;
+// TODO: more unitids
+//
+// MIT
+// Carnegie Mellon 
+// Stanford
+// Univ of CA Berkeley
+// California Institute Technology

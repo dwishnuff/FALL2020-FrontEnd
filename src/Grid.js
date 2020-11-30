@@ -13,7 +13,7 @@ const ResponsiveReactGridLayout = WidthProvider(Responsive);
 const chart3 = RaceGrad;
 
 //placeholder for fourth chart
-const chart4 = Persistence;
+// const chart4 = Persistence;
 
 class Grid extends React.Component {
   // needed to initialize state
@@ -95,6 +95,7 @@ class Grid extends React.Component {
           } else { return null; }
         }
       },
+      // TODO: add IPEDS institution 6-year grad rates by legal sex
     ];
 
     const layout = [
