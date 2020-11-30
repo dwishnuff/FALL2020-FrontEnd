@@ -1,4 +1,4 @@
-export { mergeArrays, range, unzip, zip };
+export { mergeArrays, range, resultOrZero, unzip, zip };
 
 // sorted merge, keeping exactly one copy of each unique element
 function mergeArrays(a, b) {
@@ -24,6 +24,16 @@ function range(start, end, interval = 1) {
 	const diff = end - start;
 	const len = Math.floor(diff / interval + !!(diff % interval));
 	return [...Array(len).keys()].map((i) => interval * i + start);
+}
+
+// return a zero value if passed undefined or null or other false-y stuff;
+// otherwise call the provided function on the passed value
+function resultOrZero(x, f = (v) => v, zero=0) {
+	if (!x) {
+		return zero;
+	}
+
+	return f(x);
 }
 
 function unzip(arr) {
