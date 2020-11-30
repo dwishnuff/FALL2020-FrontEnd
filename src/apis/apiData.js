@@ -194,12 +194,14 @@ async function queryIpeds(
 		case ipeds.FALL_ENROLLMENT:
 			let res = await ipeds.getFallEnrollmentByRace(unitid, startYear, endYear, filters);
       return res.map(({ label, data }) => chartData(years, data, label));
+
     // retention based on returns in fall
 		case ipeds.FALL_RETENTION:
 			return chartData(
 					years,
 					await ipeds.getFallRetention(unitid, startYear, endYear, filters)
         );
+
     // graduates within 6 years
     case ipeds.GRAD_6YR:
       let gradRates = await ipeds.getGradRates(unitid, startYear, endYear);
@@ -207,6 +209,7 @@ async function queryIpeds(
         chartData(years, v, k)
       );
       return mergeData(datasets);
+
 		default:
 			return null;
 	}
