@@ -3,15 +3,11 @@ import "./Grid.css";
 import { GradLegalSex } from "./GradLegalSex.js";
 import { Responsive, WidthProvider } from "react-grid-layout";
 import { pdxDataCounts, pdxDataPercents } from "./apis/apiData";
-import GenderGrad from "./GenderGrad.js";
 import RaceGrad from "./RaceGrad.js";
 import Persistence from "./Persistence.js";
 //https://www.npmjs.com/package/react-grid-layout#installation
 
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
-
-//placeholder for second chart
-// const chart2 = GenderGrad;
 
 //placeholder for third chart
 const chart3 = RaceGrad;
@@ -29,6 +25,7 @@ class Grid extends React.Component {
 
   componentDidMount() {
     // set up the component by fetching data, and set appropriate state when the fetch succeeds
+
     pdxDataPercents("grad-demographics", "legal-sex").then(c => {
       // data loaded, store in state object
       this.setState({ legalSexPercent: c })
