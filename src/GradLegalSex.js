@@ -13,27 +13,34 @@ const legend = {
 	},
 };
 
-const options = {
-	scales: {
-		yAxes: [
-			{
-				stacked: true,
-				ticks: {
-					beginAtZero: true,
-				},
-			},
-		],
-		xAxes: [
-			{
-				stacked: true,
-			},
-		],
-	},
-	tooltips: {
-		mode: "label",
-	},
-	responsive: true,
-	maintainAspectRatio: false,
+const options = (isPercent) => {
+	let opts = {
+    scales: {
+      yAxes: [
+        {
+          stacked: true,
+          ticks: {
+            beginAtZero: true,
+          },
+        },
+      ],
+      xAxes: [
+        {
+          stacked: true,
+        },
+      ],
+    },
+    tooltips: {
+      mode: "label",
+    },
+    responsive: true,
+    maintainAspectRatio: false,
+  };
+
+	if (isPercent) {
+		opts.scales.yAxes[0].ticks.max = 100;
+	}
+	return opts;
 };
 
 const colors = [
@@ -46,6 +53,6 @@ function GradLegalSex(props) {
 	const data = applyColors(props.data, colors);
 
 	return (
-		<Bar data={data} legend={legend} options={options} />
+		<Bar data={data} legend={legend} options={options(props.isPercent)} />
 	);
 }

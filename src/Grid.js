@@ -20,6 +20,7 @@ class Grid extends React.Component {
   constructor() {
     super();
     // set index of each dataset to false
+    // TODO: use meaningful property names?
     this.state = { 0: false, 1: false, 2: false, 3: false };
   }
 
@@ -48,6 +49,8 @@ class Grid extends React.Component {
 
     // these datasets are hard-coded
     this.setState({ 2: true, 3: true });
+
+    // TODO: load other datasets
   }
 
   render() {
@@ -58,7 +61,7 @@ class Grid extends React.Component {
         name: "PSU CS Grad Class by Legal Sex (percentages)",
         chart: () => {
           if (this.state[0]) {
-            return (<GradLegalSex data={this.state.legalSexPercent} />);
+            return (<GradLegalSex data={this.state.legalSexPercent} isPercent={true} />);
           } else { return null; }
         }
       },
