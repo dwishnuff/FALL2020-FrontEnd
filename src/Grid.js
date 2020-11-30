@@ -16,6 +16,7 @@ import { Responsive, WidthProvider } from "react-grid-layout";
 import { ipeds, pdxDataCounts, pdxDataPercents, queryIpeds } from "./apis/apiData";
 import RaceGrad from "./RaceGrad.js";
 import Persistence from "./Persistence.js";
+import About from "./About.js";
 //https://www.npmjs.com/package/react-grid-layout#installation
 
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
@@ -25,6 +26,8 @@ const chart3 = RaceGrad;
 
 //placeholder for fourth chart
 // const chart4 = Persistence;
+
+const chart6 = About;
 
 class Grid extends React.Component {
   // needed to initialize state
@@ -116,13 +119,19 @@ class Grid extends React.Component {
       },
       {
         id: 5,
-        name: "Graduates Within 6 Years by Legal Sex (%, all PSU, source: IPEDS)",
+        name: "PSU Ungergrads Graduated within 6 Years",
         chart: () => {
           if (this.state[5]) {
             return (<GradLegalSex data={this.state.ipedsGradLegalSex} isPercent={true} />);
           } else { return null; }
         }
-      }
+      },
+      {
+        id: 6,
+        name: "About the Data",
+        chart: chart6,   
+        }
+      
     ];
 
     const layout = [
@@ -131,6 +140,7 @@ class Grid extends React.Component {
       { i: "3", x: 0, y: 0, w: 5, h: 3 },
       { i: "4", x: 5, y: 0, w: 5, h: 3 },
       { i: "5", x: 0, y: 0, w: 5, h: 3 },
+      { i: "6", x: 5, y: 0, w: 5, h: 3 },
     ];
 
     return (
