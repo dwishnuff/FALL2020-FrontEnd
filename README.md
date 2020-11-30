@@ -33,7 +33,7 @@ to get past errors encountered while using `fetch` to get remote
 data for use in our charts.
 
 ### react-chartjs-2
-We used the examples linked from the official repo for
+We used the [examples](https://reactchartjs.github.io/react-chartjs-2/#/) linked from the official repo for
 reference when building our charts.
 
 ## gh-pages deploy
