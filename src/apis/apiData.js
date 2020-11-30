@@ -177,6 +177,8 @@ async function pdxDataCounts(type, feature, keepTotals = true) {
 
 // Get time series of various attributes available from the IPEDS dataset
 // returns an object suitable for use with react-chartjs-2
+//
+// so far, only seriously tested with GRAD_6YR
 async function queryIpeds(
 	unitid,
 	feature = ipeds.FALL_RETENTION,
