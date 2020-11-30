@@ -53,7 +53,6 @@ class Grid extends React.Component {
       // failed load, ensure loaded=false for this dataset
       this.setState({ 3: false})
     }).finally(_ => {
-      console.log("loaded: ", this.state.legalSexPersistence);
       this.setState({ 3: true });
     });
 
