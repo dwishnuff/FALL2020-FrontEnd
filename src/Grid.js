@@ -2,7 +2,7 @@ import React from "react";
 import "./Grid.css";
 import { GradLegalSex } from "./GradLegalSex.js";
 import { Responsive, WidthProvider } from "react-grid-layout";
-import { pdxDataCounts, pdxDataPercents } from "./apis/apiData";
+import { ipeds, pdxDataCounts, pdxDataPercents, queryIpeds } from "./apis/apiData";
 import RaceGrad from "./RaceGrad.js";
 import Persistence from "./Persistence.js";
 //https://www.npmjs.com/package/react-grid-layout#installation
@@ -21,7 +21,7 @@ class Grid extends React.Component {
     super();
     // set index of each dataset to false
     // TODO: use meaningful property names?
-    this.state = { 0: false, 1: false, 2: true, 3: false };
+    this.state = { 1: false, 2: false, 3: true, 4: false, 5: false };
   }
 
   componentDidMount() {
@@ -32,9 +32,9 @@ class Grid extends React.Component {
       this.setState({ legalSexPercent: c })
     }).catch(_ => {
       // failed load, ensure loaded=false for this dataset
-      this.setState({ 0: false })
+      this.setState({ 1: false })
     }).finally(_ => {
-      this.setState({ 0: true })
+      this.setState({ 1: true })
     });
 
     pdxDataCounts("grad-demographics", "legal-sex", false).then(c => {
@@ -42,18 +42,27 @@ class Grid extends React.Component {
       this.setState({ legalSexCounts: c })
     }).catch(_ => {
       // failed load, ensure loaded=false for this dataset
-      this.setState({ 1: false})
+      this.setState({ 2: false})
     }).finally(_ => {
-      this.setState({ 1: true })
+      this.setState({ 2: true })
     });
 
     pdxDataCounts("retention", "legal-sex", true).then(c => {
       this.setState({ legalSexPersistence: c })
     }).catch(_ => {
       // failed load, ensure loaded=false for this dataset
-      this.setState({ 3: false})
+      this.setState({ 4: false})
     }).finally(_ => {
-      this.setState({ 3: true });
+      this.setState({ 4: true });
+    });
+
+    queryIpeds(ipeds.PDX_UNITID, ipeds.GRAD_6YR).then(c => {
+      this.setState({ipedsGradLegalSex: c})
+    }).catch(_ => {
+      // failed load, ensure loaded=false for this dataset
+      this.setState({ 5: false})
+    }).finally(_ => {
+      this.setState({ 5: true });
     });
 
     // TODO: load other datasets
@@ -66,7 +75,7 @@ class Grid extends React.Component {
         id: 1,
         name: "PSU CS Grad Class by Legal Sex (percentages)",
         chart: () => {
-          if (this.state[0]) {
+          if (this.state[1]) {
             return (<GradLegalSex data={this.state.legalSexPercent} isPercent={true} />);
           } else { return null; }
         }
@@ -75,7 +84,7 @@ class Grid extends React.Component {
         id: 2,
         name: "PSU CS Grad Class by Legal Sex (counts)",
         chart: () => {
-          if (this.state[1]) {
+          if (this.state[2]) {
             return (<GradLegalSex data={this.state.legalSexCounts} />);
           } else { return null; }
         }
@@ -89,12 +98,20 @@ class Grid extends React.Component {
         id: 4,
         name: "PSU CS Persistence",
         chart: () => {
-          if (this.state[3]) {
+          if (this.state[4]) {
             return (<Persistence data={this.state.legalSexPersistence} />);
           } else { return null; }
         }
       },
-      // TODO: add IPEDS institution 6-year grad rates by legal sex
+      {
+        id: 5,
+        name: "Graduates Within 6 Years by Legal Sex (%, all PSU, source: IPEDS)",
+        chart: () => {
+          if (this.state[5]) {
+            return (<GradLegalSex data={this.state.ipedsGradLegalSex} isPercent={true} />);
+          } else { return null; }
+        }
+      }
     ];
 
     const layout = [

@@ -176,7 +176,7 @@ async function pdxDataCounts(type, feature, keepTotals = true) {
 }
 
 // Get time series of various attributes available from the IPEDS dataset
-// returns an Array of objects suitable for use with react-charts
+// returns an object suitable for use with react-chartjs-2
 async function queryIpeds(
 	unitid,
 	feature = ipeds.FALL_RETENTION,
@@ -194,12 +194,16 @@ async function queryIpeds(
 			let res = await ipeds.getFallEnrollmentByRace(unitid, startYear, endYear, filters);
       return res.map(({ label, data }) => chartData(years, data, label));
 		case ipeds.FALL_RETENTION:
-			return [
-				chartData(
+			return chartData(
 					years,
 					await ipeds.getFallRetention(unitid, startYear, endYear, filters)
-				),
-			];
+				);
+    case ipeds.GRAD_6YR:
+      let gradRates = await ipeds.getGradRates(unitid, startYear, endYear);
+      let datasets = Object.entries(gradRates).map(([k, v]) => 
+        chartData(years, v, k)
+      );
+      return mergeData(datasets);
 		default:
 			return null;
 	}

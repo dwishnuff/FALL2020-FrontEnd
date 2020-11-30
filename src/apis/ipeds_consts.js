@@ -1,12 +1,19 @@
 // IPEDS fields
 export const FALL_RETENTION = "fall-retention";
 export const FALL_ENROLLMENT = "fall-enrollment";
+export const GRAD_6YR = "grad-rates";
+
+export const GRAD_6YR_COUNT = "completers_150pct";
 
 // special values
 export const ALL = 99;
 export const MISSING = -1;
 export const NA = -2;
 export const SUPPRESSED = -3;
+
+export const MALE = 1;
+export const FEMALE = 2;
+export const UNKNOWN = 9;
 
 // latest year for retention data
 export const EARLIEST = 2009; // not actually the earliest, but need later years for code 99 to work
