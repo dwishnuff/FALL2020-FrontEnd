@@ -130,6 +130,7 @@ class Grid extends React.Component {
       { i: "2", x: 5, y: 0, w: 5, h: 3 },
       { i: "3", x: 0, y: 0, w: 5, h: 3 },
       { i: "4", x: 5, y: 0, w: 5, h: 3 },
+      { i: "5", x: 0, y: 0, w: 5, h: 3 },
     ];
 
     return (
