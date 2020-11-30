@@ -140,7 +140,7 @@ async function pdxDataCounts(type, feature, keepTotals = true) {
 			}
 			break;
 		case "retention":
-			await retentionBy(feature, "percent").then((d) => {
+			await retentionBy(feature, "counts").then((d) => {
 				data = d;
 			});
 			for (let k of Object.keys(data.data)) {

@@ -4,10 +4,6 @@ import "./index.css";
 import App from "./App";
 import Grid from "./Grid";
 import reportWebVitals from "./reportWebVitals";
-import { ipeds, queryIpeds } from "./apis/apiData";
-
-
-queryIpeds(ipeds.PDX_UNITID).then(r => console.log(r))
 
 ReactDOM.render(
   <div>
