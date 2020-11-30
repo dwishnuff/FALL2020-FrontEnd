@@ -24,6 +24,12 @@ npm install react-charts\
 npm install gh-pages --save-dev\
 npm install react--chartjs-2 chart.js\
 
+## using asynchronous fetches with React
+We followed the tutorial at 
+[https://www.robinwieruch.de/react-fetching-data](https://www.robinwieruch.de/react-fetching-data)
+to get past errors encountered while using `fetch` to get remote
+data for use in our charts.
+
 ## gh-pages deploy
 The site is deployed on GitHub pages at:\
 [https://dwishnuff.github.io/FALL2020-FrontEnd/](https://dwishnuff.github.io/FALL2020-FrontEnd/)
@@ -45,6 +51,7 @@ https://dev.to/yuribenjamin/how-to-deploy-react-app-in-github-pages-2a1f
 # About this React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+That includes the following scripts and instructions:
 
 ## Available Scripts
 
